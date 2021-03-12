@@ -1,3 +1,7 @@
+body {
+  font-family: Roboto;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+.bg-dark{
+  background-color: #DAE8FC!important;
+  border-radius: 5px;
+}
+.bg-dark a{
+  color: #888;
+  font-family: Roboto;
+  font-size: 16px;
+}
+.navbar-menu {
+  margin-left:0px;
+}
+.bg-dark a:hover{
+  color: #333;
+}
+.navbar-logo {
+  position:absolute;
+  margin-left:-30px;
+  margin-top:-40px;
+  width: 54px;
+}
+button {
+  border: 1px solid #7EA6E0;
+  background-color: #DAE8FC;
+  color: #7EA6E0;
+  font-family: Roboto;
+  font-size: 10pt;
+  padding: 8px;
+  border-radius: 5px;
+}
+.form-control {
+  font-size:14px;
+  border-radius: 5px;
+}
+.navbar-right {
+  padding-right:0px;
+}
+.cart-items {
+  position: absolute;
+  margin-top:-28px;
+  margin-left: 10px;
+  font-size: 9px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  border: 1px solid #888;
+  border-radius: 180px;
 }
