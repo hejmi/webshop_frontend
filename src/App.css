@@ -1,7 +1,9 @@
 body {
   font-family: Roboto;
 }
-
+.container {
+  padding-top:20px;
+}
 .App {
   text-align: center;
 }
@@ -87,4 +89,48 @@ button {
   padding-top: 1px;
   border: 1px solid #888;
   border-radius: 180px;
+}
+.products {
+  width: 100%;
+  padding-bottom:50px;
+  padding-left: 45px;
+}
+.product-info {
+  width:200px;
+}
+.product-info .product-name {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+}
+.product-info .product-price {
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+}
+.product-info .description {
+  font-size: 14px;
+  height: 45px;
+}
+.button-addtocart {
+  float: right;
+  border: 1px solid #7EA6E0;
+  background-color: #7EA6E0;
+  color: #FFFFFF;
+}
+.button-moreinfo {
+  border: 1px solid #7EA6E0;
+  background-color: #FFFFFF;
+  color: #7EA6E0;
+}
+.button-addtocart:hover {
+  float: right;
+  border: 1px solid #7EA6E0;
+  background-color: #888888;
+  color: #FFFFFF;
+}
+.button-moreinfo:hover {
+  border: 1px solid #7EA6E0;
+  background-color: #888888;
+  color: #FFFFFF;
 }

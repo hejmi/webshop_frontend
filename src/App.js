@@ -3,6 +3,7 @@ import { Switch, Route, Link } from "react-router-dom"
 import * as Icon from "react-bootstrap-icons"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
+import BootstrapCarousel from "./BootstrapCarousel";
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
@@ -80,8 +81,9 @@ class App extends Component {
                        </div>
                    </div>
               </nav>
-              <Switch>
-                <Route exact path={["/", "/products"]} component={ProductList} />
+            <BootstrapCarousel></BootstrapCarousel>
+            <Switch>
+                <Route exact path="/products" component={ProductList} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/add-product" component={AddProduct} />
