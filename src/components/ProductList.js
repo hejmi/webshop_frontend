@@ -20,7 +20,6 @@ export default class ProductList extends Component {
         this.retriveProducts();
     }
 
-
     retriveProducts() {
         ProductsService.getAll()
             .then(response => {
@@ -58,7 +57,7 @@ export default class ProductList extends Component {
                             {products &&
                             products.map((product, index) => (
                                 <div className="col products">
-                                    <img src={`/images/products/product-${product.product_id}.jpg`} />
+                                    <img alt="Product" src={`/images/products/product-${product.product_id}.jpg`} />
                                     <div
                                         className={
                                             "item " +
@@ -118,12 +117,7 @@ export default class ProductList extends Component {
                                 Edit
                             </Link>
                         </div>
-                    ) : (
-                        <div>
-                            <br />
-                            <p>Please click on a product...</p>
-                        </div>
-                    )}
+                    ):(<div></div>)}
                 </div>
             </div>
         );

@@ -3,50 +3,75 @@ import { Switch, Route, Link } from "react-router-dom"
 import * as Icon from "react-bootstrap-icons"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import BootstrapCarousel from "./BootstrapCarousel";
+import BootstrapCarousel from "./components/BootstrapCarousel";
+import Footer from "./components/Footer";
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
 import Login from './components/Login'
 import ProductList from './components/ProductList'
+import CategoriesService from "./services/CategoriesService";
+import {NavDropdown} from "react-bootstrap";
 
 class App extends Component {
     constructor(props) {
         super(props);
+        this.retriveCategories = this.retriveCategories.bind(this);
         this.state = {
             user: null,
             cart: {},
+            categories: [],
             products: []
         };
     }
+
+    componentDidMount() {
+        this.retriveCategories();
+    }
+
+    retriveCategories() {
+        CategoriesService.getAll()
+            .then(response => {
+                this.setState({
+                    categories: response.data
+                });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
   render() {
-    return (
+      const { categories } = this.state;
+      return (
         <div className="container">
             <div><br/></div>
                <nav className="navbar navbar-expand-md bg-dark col-12 d-none d-md-flex" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                  <div className="navbar-item is-size-4 "><img src="./images/logo.png" alt="logo" className="navbar-logo" /></div>
+                  <div className="navbar-item is-size-4 "><img src="/images/logo2.png" alt="logo" className="navbar-logo" /></div>
                 </div>
                    <div className="navbar-nav mr-auto col-12">
                        <div className="navbar-collapse col d-none">
+                           <li className="navbar-menu">
+                               &nbsp;&nbsp;Mr Gadget&nbsp;&nbsp;
+                           </li>
                            <li className="navbar-menu">
                                <Link to="/" className="nav-link">
                                    Home
                                </Link>
                            </li>
                            <li className="navbar-menu">
-                               <Link to="/products" className="nav-link">
-                                   Categories
-                               </Link>
-                               {this.state.user && this.state.user.accessLevel < 1 && (
-                                   <Link to="/add-product" className="nav-link">
-                                       Add Product
-                                   </Link>
-                               )}
+                               <NavDropdown title="Categories" id="categories-nav-dropdown">
+                                   {categories &&
+                                   categories.map((category, index) => (
+                                   <NavDropdown.Item key={index} className="navbar-dropdown" href={`/categories/${category.category_id}`}>
+                                       {category.category_name}
+                                   </NavDropdown.Item>
+                                   ))}
+                               </NavDropdown>
                            </li>
-                           <li className="navbar-menu">
-                               &nbsp;&nbsp;About
-                           </li>&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;
                            <li className="navbar-menu">
                                Contact
                            </li>
@@ -69,7 +94,7 @@ class App extends Component {
                            </li>
                            <li className="nav-item">
                                <Link to="/cart" className="nav-link">
-                                   <Icon.Cart4/>
+                                   <Icon.Cart2/>
                                    <span
                                        className="tag is-primary"
                                        style={{ marginLeft: "5px", fontSize: "12px" }}
@@ -84,10 +109,12 @@ class App extends Component {
             <BootstrapCarousel></BootstrapCarousel>
             <Switch>
                 <Route exact path="/products" component={ProductList} />
+                <Route exact path="/" component={ProductList} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/add-product" component={AddProduct} />
               </Switch>
+            <Footer></Footer>
       </div>
     );
   }
