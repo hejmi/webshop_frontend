@@ -13,8 +13,6 @@ export class Footer extends Component {
                                 <h6>Products</h6><hr />
                                 <li>Most Popular</li>
                                 <li>Ratings</li>
-                                <li></li>
-                                <li></li>
                             </div>
                             <div className="col-3">
                                 <h6>Customer Service</h6><hr />

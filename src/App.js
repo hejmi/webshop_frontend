@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import BootstrapCarousel from "./components/BootstrapCarousel";
 import Footer from "./components/Footer";
+import FeaturedProducts from "./components/FeaturedProducts";
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
@@ -107,6 +108,7 @@ class App extends Component {
                    </div>
               </nav>
             <BootstrapCarousel></BootstrapCarousel>
+            <FeaturedProducts></FeaturedProducts>
             <Switch>
                 <Route exact path="/products" component={ProductList} />
                 <Route exact path="/" component={ProductList} />
