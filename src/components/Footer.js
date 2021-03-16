@@ -27,7 +27,7 @@ export class Footer extends Component {
                                 <span className="footer-social-icon"><Icon.Instagram /> </span> instagr.am/mistergadget<br/>
                                <span className="footer-social-icon"> <Icon.Twitter /> </span> twitter.me/mistergadget
                             </div>
-                            <div className="col-auto float-right"><h6>Mister Gadget</h6><img src="/images/logo2.png" alt="Logo" width="90" /></div>
+                            <div className="col-auto float-right"><h6>InspecThor Gadget</h6><img src="/images/logo2.png" alt="Logo" width="90" /></div>
                         </div>
                     </div>
                     <div className="footer-copyright">

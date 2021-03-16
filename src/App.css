@@ -54,6 +54,11 @@ body {
 .navbar-menu {
   margin-left:0px;
 }
+.navbar-brand {
+  font-family: "Rock Salt";
+  font-size: 14px;
+  padding-left:10px;
+}
 .bg-dark a:hover{
   color: #333;
 }
@@ -62,6 +67,11 @@ body {
   margin-left:-30px;
   margin-top:-40px;
   width: 65px;
+}
+.navbar-menu a{
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+
 }
 button {
   border: 1px solid #7EA6E0;
@@ -116,23 +126,27 @@ button {
 }
 .button-addtocart {
   float: right;
+  margin-left: auto;
+  margin-right: 0px;
+  font-size: 12px;
   border: 1px solid #7EA6E0;
   background-color: #7EA6E0;
   color: #FFFFFF;
 }
 .button-moreinfo {
+  font-size: 12px;
   border: 1px solid #7EA6E0;
   background-color: #FFFFFF;
   color: #7EA6E0;
 }
 .button-addtocart:hover {
   float: right;
-  border: 1px solid #7EA6E0;
+  border: 0px solid #7EA6E0;
   background-color: #888888;
   color: #FFFFFF;
 }
 .button-moreinfo:hover {
-  border: 1px solid #7EA6E0;
+  border: 0px solid #7EA6E0;
   background-color: #888888;
   color: #FFFFFF;
 }
@@ -201,15 +215,45 @@ button {
   font-size:13px;
 }
 .container .featured-products .featured-product .product-name {
-
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
 }
 .container .featured-products .featured-product .price-tag {
-  float:right;
-  font-weight: bold;
-  margin-right: -10px;
+  float: right;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 5px;
+
+}
+.container .featured-products .featured-product .product-description {
+  font-size: 12px;
+  padding: 5px;
+  min-height: 45px;
 }
 .container .featured-products .featured-product img {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-left: -15px;
+}
+.img-navbar {
+  position: absolute;
+  z-index: 0;
+  margin-top: -29px;
+  margin-left: -15px;
+  padding: 5px;
+  background-color: #FFF;
+  width: 200px;
+  opacity: 75%;
+  display: none;
+}
+.banner-image-holder {
+  width: 300px;
+  height: 200px;
+  background-color: #888888;
+  border: 1px solid #666666;
+  border-radius: 5px;
+}
+.BannerArea {
+  padding-left: 28px;
 }

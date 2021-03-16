@@ -27,6 +27,7 @@ export default class FeaturedProducts extends Component {
                 console.log(e);
             });
     }
+    handleBoxToggle = () => this.setState({ showBox: !this.state.showBox });
 
     render() {
         const {  featuredproducts } = this.state;
@@ -42,8 +43,17 @@ export default class FeaturedProducts extends Component {
                             <div className="product-container">
                             <div className="featured-product col" key={index}>
                                 <img alt="Product" src={`/images/products/product-${featuredproduct.product_id}.jpg`} />
-                                {featuredproduct.product_name}<div className="price-tag">{featuredproduct.product_price}</div>
-                            </div>
+                                <div className="row">
+                                    <div className="product-name">{featuredproduct.product_name}</div><div className="price-tag">{featuredproduct.product_price}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="product-description">{featuredproduct.short_description}</div>
+                                </div>
+                            </div><br/>
+                                <div className="product-info">
+                                    <button className="button-moreinfo">More info</button>
+                                    <button className="button-addtocart">Add to cart</button>
+                                </div><br/>
                             </div>
                         ))}
                     </div>

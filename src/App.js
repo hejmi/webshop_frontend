@@ -12,6 +12,7 @@ import Cart from './components/Cart'
 import Login from './components/Login'
 import ProductList from './components/ProductList'
 import CategoriesService from "./services/CategoriesService";
+import BannerAreas from "./components/BannerAreas";
 import {NavDropdown} from "react-bootstrap";
 
 class App extends Component {
@@ -55,7 +56,7 @@ class App extends Component {
                    <div className="navbar-nav mr-auto col-12">
                        <div className="navbar-collapse col d-none">
                            <li className="navbar-menu">
-                               &nbsp;&nbsp;Mr Gadget&nbsp;&nbsp;
+                               <div className="navbar-brand d-none d-lg-flex"><small>Inspec</small><b>Thor</b> &nbsp;<small>Gadget</small></div>
                            </li>
                            <li className="navbar-menu">
                                <Link to="/" className="nav-link">
@@ -74,7 +75,7 @@ class App extends Component {
                            </li>
                             &nbsp;&nbsp;&nbsp;
                            <li className="navbar-menu">
-                               Contact
+                               <a href="/contact">Contact</a>
                            </li>
                        </div>
                        <div className="navbar-collapse col-md-auto navbar-right">
@@ -109,6 +110,7 @@ class App extends Component {
               </nav>
             <BootstrapCarousel></BootstrapCarousel>
             <FeaturedProducts></FeaturedProducts>
+            <BannerAreas></BannerAreas>
             <Switch>
                 <Route exact path="/products" component={ProductList} />
                 <Route exact path="/" component={ProductList} />
