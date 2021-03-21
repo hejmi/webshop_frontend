@@ -49,22 +49,21 @@ export default class ProductList extends Component {
     }
 
     render() {
-        const { searchTitle, products, currentProduct, currentIndex } = this.state;
+        const { products, currentProduct, currentIndex } = this.state;
         return (
             <div className="row col-12">
                         <div className="container"><br/>
                             <div className="row">
                             {products &&
                             products.map((product, index) => (
-                                <div className="col products">
-                                    <img alt="Product" src={`/images/products/product-${product.product_id}.jpg`} />
+                                <div className="col products" key={index}>
+                                    <img alt="Product" src={`/images/products/product-${product.id}.jpg`} />
                                     <div
                                         className={
                                             "item " +
                                             (index === currentIndex ? "active" : "")
                                         }
                                         onClick={() => this.setActiveProduct(product, index)}
-                                        key={index}
                                     >
                                         <div className="product-info">
                                             <span className="product-name">{product.product_name}</span>

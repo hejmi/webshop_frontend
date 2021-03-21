@@ -1,7 +1,7 @@
 {
   "products" : [
     {
-      "product_id": 1,
+      "id": 1,
       "category_id": 1,
       "product_name": "Really Sweet Sweater",
       "short_description": "The sweetest sweater you'll ever need.",
@@ -11,7 +11,7 @@
       "stock": 10
     },
     {
-    "product_id": 2,
+    "id": 2,
     "category_id": 2,
     "product_name": "Ugly Pair of Jeans",
     "short_description": "Doesn't need more description.",
@@ -21,7 +21,7 @@
     "stock": 10
     },
     {
-    "product_id": 3,
+    "id": 3,
     "category_id": 8,
     "product_name": "Think Tank T-shirt",
     "short_description": "Awesome t-shirt",
@@ -31,7 +31,7 @@
     "stock": 10
     },
     {
-    "product_id": 4,
+    "id": 4,
     "category_id": 6,
     "product_name": "Blazing Blazer",
     "short_description": "Stylish blue blazer",
@@ -41,7 +41,7 @@
     "stock": 10
     },
     {
-    "product_id": 5,
+    "id": 5,
     "category_id": 4,
     "product_name": "Leather Belt",
     "short_description": "Brown leather belt",
@@ -51,7 +51,7 @@
     "stock": 10
     },
     {
-    "product_id": 6,
+    "id": 6,
     "category_id": 1,
     "product_name": "Really Sweet Sweater 4",
     "short_description": "The sweetest sweater you'll ever need.",
@@ -61,7 +61,7 @@
     "stock": 10
     },
     {
-    "product_id": 7,
+    "id": 7,
     "category_id": 1,
     "product_name": "Really Sweet Sweater 3",
     "short_description": "The sweetest sweater you'll ever need.",
@@ -71,7 +71,7 @@
     "stock": 10
     },
     {
-    "product_id": 8,
+    "id": 8,
     "category_id": 1,
     "product_name": "Really Sweet Sweater 2",
     "short_description": "The sweetest sweater you'll ever need.",
@@ -125,7 +125,7 @@
   ],
   "featuredproducts" : [
     {
-      "product_id": 1,
+      "id": 1,
       "category_id": 1,
       "product_name": "Really Sweet Sweater",
       "short_description": "The sweetest sweater you'll ever need.",
@@ -135,7 +135,7 @@
       "stock": 10
     },
     {
-      "product_id": 2,
+      "id": 2,
       "category_id": 2,
       "product_name": "Ugly Pair of Jeans",
       "short_description": "Doesn't need more description.",
@@ -145,7 +145,7 @@
       "stock": 10
     },
     {
-      "product_id": 3,
+      "id": 3,
       "category_id": 8,
       "product_name": "Think Tank T-shirt",
       "short_description": "Awesome t-shirt",
@@ -155,7 +155,7 @@
       "stock": 10
     },
     {
-      "product_id": 4,
+      "id": 4,
       "category_id": 6,
       "product_name": "Blazing Blazer",
       "short_description": "Stylish blue blazer",

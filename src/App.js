@@ -29,6 +29,17 @@ class App extends Component {
 
     componentDidMount() {
         this.retriveCategories();
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        this.setState({cart})
+        this.countItemsInCart()
+    }
+
+    countItemsInCart() {
+        let count = 0;
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        if (!cart) return 0;
+        Object.values(cart).forEach(item => count = count + item)
+        return count;
     }
 
     retriveCategories() {
@@ -37,7 +48,6 @@ class App extends Component {
                 this.setState({
                     categories: response.data
                 });
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -101,7 +111,7 @@ class App extends Component {
                                        className="tag is-primary"
                                        style={{ marginLeft: "5px", fontSize: "12px" }}
                                    >
-                                       <div className="cart-items">{ Object.keys(this.state.cart).length }</div>
+                                       <div className="cart-items">{ this.countItemsInCart() }</div>
                   </span>
                                </Link>
                            </li>

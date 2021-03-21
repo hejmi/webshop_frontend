@@ -257,3 +257,31 @@ button {
 .BannerArea {
   padding-left: 28px;
 }
+
+/* Cart container */
+
+.container .cart-container {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  font-size: 12px;
+  border: 1px solid #E6E6E6;
+}
+.container .cart-container .product-name{
+  font-size: 14px;
+  font-weight: bold;
+}
+.container .cart-container .title-header {
+  background-color: #E6E6E6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 15px;
+  font-size: 16px;
+}
+.container .cart-container .cart {
+  margin-left:39px;
+  padding-top:15px;
+  margin-right: 10px;
+}
+.container .cart-container .sign-button {
+  font-size: 8px;
+}

@@ -1,0 +1,6 @@
+{
+  "/*": "/$1",
+  "/:resource/:id/show": "/:resource/:id",
+  "/:resource/:id": "/:resource/:id",
+  "/products/:id": "/products/:id"
+}
