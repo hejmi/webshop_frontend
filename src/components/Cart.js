@@ -37,8 +37,10 @@ export default class Cart extends React.Component {
                             'id': response.data.id,
                             'product_name': response.data.product_name,
                             'product_price': response.data.product_price,
-                            'short_description' : response.data.short_description,
-                            'qty' : currqty
+                            'short_desc' : response.data.short_desc,
+                            'qty' : currqty,
+                            'sku' : response.data.sku,
+                            'has_image' : response.data.has_image
                         }),
                         totals: this.state.totals + (response.data.product_price * currqty)
                     })
@@ -82,11 +84,13 @@ export default class Cart extends React.Component {
                     <div className="cart" key={index}>
                         <div className="row">
                             <div className="col-2">
-                                <img alt="Product" src={`/images/products/thumbs/product-${product.id}.jpg`} />
+                                {product.has_image === true ? (
+                                    <img alt={product.product_name} height="100" src={`/images/products/product-${product.sku.sku}.jpg`} />
+                                ):(<img height="100" src="/images/products/imageiscomingsoon.jpg"/>)}
                             </div>
                             <div className="col-4">
                                 <span className="product-name">{product.product_name}</span><br/>
-                                <span>{product.short_description}</span>
+                                <span>{product.short_desc}</span>
                             </div>
                             <div className="col-3">
                                 <input type="button" className="sign-button" value="--" /> {product.qty} <input type="button" className="sign-button" value="+" /> x ${product.product_price}
@@ -100,16 +104,17 @@ export default class Cart extends React.Component {
                         </div>
                     </div>
                         )
-                    } <br/></div><hr/>
+                    } <br/>
                 { products.length ?
-                    <div><h4>
+                    <div className="cart"><h4>
                         <small>Total Amount: </small>
                         <span className="float-right text-primary">${totals.toFixed(2)}</span>
                     </h4><hr/></div>: ''}
-                { !products.length ?<h3 className="text-warning">No item on the cart</h3>: ''}
+                { !products.length ?<div className="cart"><h5>No items in cart...</h5><br/></div>: ''}
+                </div><br/>
             <Link to="/checkout">
                 <button className="button-addtocart float-right">Go to checkout</button></Link>
-            <button className="button-moreinfo float-right" onClick={this.clearCart}
+            <button className="button-moreinfo float-right" onClick={() => this.clearCart & window.location.reload(true) }
                     style={{ marginRight: "10px" }}>Empty Cart</button><br/><br/><br/>
             </div>
         );

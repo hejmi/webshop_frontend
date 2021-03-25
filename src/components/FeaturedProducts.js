@@ -18,6 +18,19 @@ export default class FeaturedProducts extends Component {
         this.getFeaturedProducts();
     }
 
+    getFeaturedProducts() {
+        FeaturedService.getAll()
+            .then(response => {
+                this.setState({
+                    featuredproducts: response.data
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+    handleBoxToggle = () => this.setState({ showBox: !this.state.showBox });
+
     addToCart = (data) => {
         let cart = localStorage.getItem('cart')
             ? JSON.parse(localStorage.getItem('cart')) : {};
@@ -33,19 +46,6 @@ export default class FeaturedProducts extends Component {
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setState({cart});
     }
-
-    getFeaturedProducts() {
-        FeaturedService.getAll()
-            .then(response => {
-                this.setState({
-                    featuredproducts: response.data
-                });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-    handleBoxToggle = () => this.setState({ showBox: !this.state.showBox });
 
     render() {
         const {  featuredproducts } = this.state;

@@ -12,6 +12,7 @@ export default class ProductList extends Component {
             products: [],
             currentProduct: null,
             currentIndex: -1,
+            quantity: 1,
             searchTitle: ""
         };
     }
@@ -47,6 +48,21 @@ export default class ProductList extends Component {
             currentIndex: index
         });
     }
+    addToCart = (data) => {
+        let cart = localStorage.getItem('cart')
+            ? JSON.parse(localStorage.getItem('cart')) : {};
+        console.log(data);
+        let id = data.id.toString();
+        cart[id] = (cart[id] ? cart[id]: 0);
+        let qty = cart[id] + parseInt(this.state.quantity);
+        if (data.stock < qty) {
+            cart[id] = data.stock;
+        } else {
+            cart[id] = qty
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.setState({cart});
+    }
 
     render() {
         const { products, currentProduct, currentIndex } = this.state;
@@ -56,27 +72,24 @@ export default class ProductList extends Component {
                             <div className="row">
                             {products &&
                             products.map((product, index) => (
-                                <div className="col products" key={index}>
-                                    <img alt="Product" src={`/images/products/product-${product.id}.jpg`} />
-                                    <div
-                                        className={
-                                            "item " +
-                                            (index === currentIndex ? "active" : "")
-                                        }
-                                        onClick={() => this.setActiveProduct(product, index)}
-                                    >
+                                <div className="col-3 products" key={index}>
+                                    {product.has_image === true ? (
+                                    <img alt={product.product_name} height="301" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
+                                        ):(<img height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    <div>
                                         <div className="product-info">
                                             <span className="product-name">{product.product_name}</span>
-                                            {product.product_price ? ( <span className="product-price">{product.product_price}</span> ) : (
-                                                <span className="product-sale-price">{product.sale_price}</span>
-                                                )}
+                                            <span className="product-price">${product.product_price}</span>
                                         </div>
                                         <div className="product-info">
-                                            <div className="description">{product.short_description}</div>
+                                            {product.sku.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{product.sku.attributeOptions.attribute.attribute_name} : {product.sku.attributeOptions.attribute_option_name}</small></span> ) : (
+                                                <span className="description"> </span>
+                                            )}
+                                            <div className="description">{product.short_desc}</div>
                                         </div>
                                         <div className="product-info">
                                             <button className="button-moreinfo" onClick={() => this.setActiveProduct(product, index)}
-                                                    key={index}>More info</button> <button className="button-addtocart">Add to cart</button>
+                                                    key={index}>More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +129,7 @@ export default class ProductList extends Component {
                                 Edit
                             </Link>
                         </div>
-                    ):(<div></div>)}
+                    ):(<div> </div>)}
                 </div>
             </div>
         );
