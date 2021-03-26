@@ -158,8 +158,20 @@ button {
   -o-transition: all .4s ease-out;
   width: 200px;
 }
-.navbar-dropdown:hover {
+.navbar-dropdown-sub {
+  padding-top:10px;
+  height:46px;
+  -moz-transition: all .4s ease-out;
+  -webkit-transition: all .4s ease-out;
+  -o-transition: all .4s ease-out;
+  width: 250px;
+  padding-left: 10px;
+}
+.navbar-dropdown:hover, .navbar-dropdown-sub:hover {
   background-color: #DAE8FC;
+}
+.dropdown-toggle::after {
+
 }
 
 /* footer container  */
@@ -197,11 +209,13 @@ button {
   border: 1px solid #E6E6E6;
 }
 .container .featured-products .title-header {
+  font-family: "Rock Salt";
   background-color: #E6E6E6;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 15px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
 }
 .container .featured-products .product-container {
   width: 238px;

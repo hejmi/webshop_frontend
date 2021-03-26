@@ -86,7 +86,7 @@ export default class Cart extends React.Component {
                             <div className="col-2">
                                 {product.has_image === true ? (
                                     <img alt={product.product_name} height="100" src={`/images/products/product-${product.sku.sku}.jpg`} />
-                                ):(<img height="100" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                ):(<img alt={product.product_name} height="100" src="/images/products/imageiscomingsoon.jpg"/>)}
                             </div>
                             <div className="col-4">
                                 <span className="product-name">{product.product_name}</span><br/>

@@ -7,13 +7,13 @@ export default class BannerAreas extends Component {
                 <div className="container">
                     <div className="row">
                     <div className="col">
-                        <div className="banner-image-holder"></div>
+                        <div><img src="/images/banner.png" width="300" alt="banner" className="banner-image-holder" /></div>
                     </div>
                     <div className="col">
-                        <div className="banner-image-holder"></div>
+                        <div><img src="/images/banner.png" width="300" alt="banner" className="banner-image-holder"/></div>
                     </div>
                     <div className="col">
-                        <div className="banner-image-holder"></div>
+                        <div><img src="/images/banner.png" width="300" alt="banner" className="banner-image-holder"/></div>
                     </div>
                     </div>
                 </div>

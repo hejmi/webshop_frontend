@@ -12,10 +12,10 @@ export class BootstrapCarousel extends Component {
                         <img className="d-block w-100" src={'/images/slides/slide1.png'} alt="First slide" />
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className="d-block w-100" src={'/images/slides/slide2.png'} alt="Second slide" />
+                        <img className="d-block w-100" src={'/images/slides/slide3.png'} alt="Second slide" />
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className="d-block w-100" src={'/images/slides/slide3.png'} alt="Third slide" />
+                        <img className="d-block w-100" src={'/images/slides/slide1.png'} alt="Third slide" />
                     </Carousel.Item>
                 </Carousel>
             </div>

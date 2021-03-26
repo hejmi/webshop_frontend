@@ -48,7 +48,7 @@
       "short_desc": "Aquaman Comics",
       "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
       "product_price": 2.99,
-      "is_featured": false,
+      "is_featured": true,
       "has_image": true,
       "brands": {
         "id": 3,
@@ -122,7 +122,7 @@
       "short_desc": "Aquaman Comics",
       "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
       "product_price": 2.99,
-      "is_featured": false,
+      "is_featured": true,
       "has_image": true,
       "brands": {
         "id": 3,
@@ -196,7 +196,7 @@
       "short_desc": "Aquaman Comics",
       "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
       "product_price": 2.99,
-      "is_featured": false,
+      "is_featured": true,
       "has_image": true,
       "brands": {
         "id": 3,
@@ -233,7 +233,7 @@
       "short_desc": "Aquaman Comics",
       "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
       "product_price": 2.99,
-      "is_featured": false,
+      "is_featured": true,
       "has_image": true,
       "brands": {
         "id": 3,
@@ -262,86 +262,259 @@
   ],
   "categories" : [
     {
-      "category_id": 1,
-      "parent_id": 0,
-      "category_name": "Sweaters"
+      "id": 1,
+      "parent_category_id": 0,
+      "category_name": "Toys"
     },
     {
-      "category_id": 2,
-      "parent_id": 0,
-      "category_name": "Jeans"
+      "id": 2,
+      "parent_category_id": 0,
+      "category_name": "Clothing & Accessories"
     },
     {
-      "category_id": 3,
-      "parent_id": 0,
-      "category_name": "Trousers"
+      "id": 3,
+      "parent_category_id": 0,
+      "category_name": "Reading"
     },
     {
-      "category_id": 4,
-      "parent_id": 0,
+      "id": 4,
+      "parent_category_id": 0,
+      "category_name": "Cards & Games"
+    },
+    {
+      "id": 5,
+      "parent_category_id": 0,
+      "category_name": "Home & Stationary"
+    },
+    {
+      "id": 6,
+      "parent_category_id": 1,
+      "category_name": "Action Figures"
+    },
+    {
+      "id": 7,
+      "parent_category_id": 1,
+      "category_name": "Dolls"
+    },
+    {
+      "id": 8,
+      "parent_category_id": 1,
+      "category_name": "Blind Bags & Boxes"
+    },
+    {
+      "id": 9,
+      "parent_category_id": 2,
+      "category_name": "Kids Clothes"
+    },
+    {
+      "id": 10,
+      "parent_category_id": 2,
+      "category_name": "Mens Clothes"
+    },
+    {
+      "id": 11,
+      "parent_category_id": 2,
+      "category_name": "Ladies Clothes"
+    },
+    {
+      "id": 12,
+      "parent_category_id": 2,
+      "category_name": "Bags"
+    },
+    {
+      "id": 13,
+      "parent_category_id": 2,
       "category_name": "Accessories"
     },
     {
-      "category_id": 5,
-      "parent_id": 0,
-      "category_name": "Shoes"
+      "id": 14,
+      "parent_category_id": 3,
+      "category_name": "Books"
     },
     {
-      "category_id": 6,
-      "parent_id": 0,
-      "category_name": "Blazers"
+      "id": 15,
+      "parent_category_id": 3,
+      "category_name": "Comics"
     },
     {
-      "category_id": 7,
-      "parent_id": 0,
-      "category_name": "Outerwear"
+      "id": 16,
+      "parent_category_id": 3,
+      "category_name": "Graphic Novels"
     },
     {
-      "category_id": 8,
-      "parent_id": 0,
-      "category_name": "Shirts"
+      "id": 17,
+      "parent_category_id": 4,
+      "category_name": "Board Games"
+    },
+    {
+      "id": 18,
+      "parent_category_id": 4,
+      "category_name": "Trading Cards"
+    },
+    {
+      "id": 19,
+      "parent_category_id": 4,
+      "category_name": "Role Play Games"
+    },
+    {
+      "id": 20,
+      "parent_category_id": 5,
+      "category_name": "Home & Lifestyle"
+    },
+    {
+      "id": 21,
+      "parent_category_id": 5,
+      "category_name": "Stationary & Office"
     }
   ],
   "featuredproducts" : [
     {
-      "id": 1,
-      "category_id": 1,
-      "product_name": "Really Sweet Sweater",
-      "short_description": "The sweetest sweater you'll ever need.",
-      "full_description": "The sweetest sweater you'll ever need. <br/>100% eco cotton. Made by fat munks in Malaysia.",
-      "product_price": 49.99,
-      "tax_id": 1,
-      "stock": 10
-    },
-    {
       "id": 2,
-      "category_id": 2,
-      "product_name": "Ugly Pair of Jeans",
-      "short_description": "Doesn't need more description.",
-      "full_description": "The product name says everything",
-      "product_price": 89.99,
-      "tax_id": 1,
-      "stock": 10
-    },
-    {
-      "id": 3,
-      "category_id": 8,
-      "product_name": "Think Tank T-shirt",
-      "short_description": "Awesome t-shirt",
-      "full_description": "The coolest t-shirt you'll ever wear!",
-      "product_price": 24.99,
-      "tax_id": 1,
-      "stock": 10
+      "category": {
+        "id": 15,
+        "parent_category_id": 3,
+        "category_name": "Comics"
+      },
+      "product_name": "Aquaman No.41",
+      "short_desc": "Aquaman Comics",
+      "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
+      "product_price": 2.99,
+      "is_featured": true,
+      "has_image": true,
+      "brands": {
+        "id": 3,
+        "brand_name": "DC Comics"
+      },
+      "vat": {
+        "id": 1,
+        "vat_name": "Standard rate UK",
+        "vat_value": 20
+      },
+      "sku": {
+        "id": 2,
+        "sku": "111-111-41",
+        "stock": 1,
+        "price_diff": null,
+        "attributeOptions": {
+          "id": 10,
+          "attribute_option_name": "Used, ok condition",
+          "attribute": {
+            "id": 3,
+            "attribute_name": "Condition"
+          }
+        }
+      }
     },
     {
       "id": 4,
-      "category_id": 6,
-      "product_name": "Blazing Blazer",
-      "short_description": "Stylish blue blazer",
-      "full_description": "Stylish blue blazer",
-      "product_price": 149.99,
-      "tax_id": 1,
-      "stock": 10
+      "category": {
+        "id": 15,
+        "parent_category_id": 3,
+        "category_name": "Comics"
+      },
+      "product_name": "Aquaman No.43",
+      "short_desc": "Aquaman Comics",
+      "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
+      "product_price": 2.99,
+      "is_featured": true,
+      "has_image": true,
+      "brands": {
+        "id": 3,
+        "brand_name": "DC Comics"
+      },
+      "vat": {
+        "id": 1,
+        "vat_name": "Standard rate UK",
+        "vat_value": 20
+      },
+      "sku": {
+        "id": 4,
+        "sku": "111-111-43",
+        "stock": 1,
+        "price_diff": null,
+        "attributeOptions": {
+          "id": 9,
+          "attribute_option_name": "Used, good condition",
+          "attribute": {
+            "id": 3,
+            "attribute_name": "Condition"
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "category": {
+        "id": 15,
+        "parent_category_id": 3,
+        "category_name": "Comics"
+      },
+      "product_name": "Aquaman No.45",
+      "short_desc": "Aquaman Comics",
+      "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
+      "product_price": 2.99,
+      "is_featured": true,
+      "has_image": true,
+      "brands": {
+        "id": 3,
+        "brand_name": "DC Comics"
+      },
+      "vat": {
+        "id": 1,
+        "vat_name": "Standard rate UK",
+        "vat_value": 20
+      },
+      "sku": {
+        "id": 6,
+        "sku": "111-111-45",
+        "stock": 1,
+        "price_diff": null,
+        "attributeOptions": {
+          "id": 8,
+          "attribute_option_name": "New",
+          "attribute": {
+            "id": 3,
+            "attribute_name": "Condition"
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "category": {
+        "id": 15,
+        "parent_category_id": 3,
+        "category_name": "Comics"
+      },
+      "product_name": "Aquaman No.46",
+      "short_desc": "Aquaman Comics",
+      "full_desc": "(W) Kelly Sue DeConnick (A/CA) Robson Rocha, Daniel Henriques",
+      "product_price": 2.99,
+      "is_featured": true,
+      "has_image": true,
+      "brands": {
+        "id": 3,
+        "brand_name": "DC Comics"
+      },
+      "vat": {
+        "id": 1,
+        "vat_name": "Standard rate UK",
+        "vat_value": 20
+      },
+      "sku": {
+        "id": 7,
+        "sku": "111-111-46",
+        "stock": 1,
+        "price_diff": null,
+        "attributeOptions": {
+          "id": 8,
+          "attribute_option_name": "New",
+          "attribute": {
+            "id": 3,
+            "attribute_name": "Condition"
+          }
+        }
+      }
     }
   ]
 }

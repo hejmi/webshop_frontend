@@ -60,12 +60,16 @@ export default class FeaturedProducts extends Component {
                         featuredproducts.map((featuredproduct, index) => (
                             <div className="product-container" key={index}>
                             <div className="featured-product col" >
-                                <img alt="Product" src={`/images/products/product-${featuredproduct.id}.jpg`} />
+                                {featuredproduct.has_image === true ? (
+                                    <img alt={featuredproduct.product_name} height="301" src={`/images/products/product-${featuredproduct.sku.sku}.jpg`} className="product-image"/>
+                                ):(<img alt={featuredproduct.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                 <div className="row">
-                                    <div className="product-name">{featuredproduct.product_name}</div><div className="price-tag">{featuredproduct.product_price}</div>
+                                    <div className="product-name">{featuredproduct.product_name}</div><div className="price-tag"><b>${featuredproduct.product_price}</b></div>
                                 </div>
                                 <div className="row">
-                                    <div className="product-description">{featuredproduct.short_description}</div>
+                                    <div className="product-description">{featuredproduct.sku.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{featuredproduct.sku.attributeOptions.attribute.attribute_name} : {featuredproduct.sku.attributeOptions.attribute_option_name}</small><br/></span> ) : (
+                                        <span className="description"> </span>
+                                    )}{featuredproduct.short_desc}</div>
                                 </div>
                             </div><br/>
                                 <div className="product-info">

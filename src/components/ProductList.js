@@ -75,7 +75,7 @@ export default class ProductList extends Component {
                                 <div className="col-3 products" key={index}>
                                     {product.has_image === true ? (
                                     <img alt={product.product_name} height="301" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
-                                        ):(<img height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                        ):(<img alt={product.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     <div>
                                         <div className="product-info">
                                             <span className="product-name">{product.product_name}</span>
@@ -88,8 +88,7 @@ export default class ProductList extends Component {
                                             <div className="description">{product.short_desc}</div>
                                         </div>
                                         <div className="product-info">
-                                            <button className="button-moreinfo" onClick={() => this.setActiveProduct(product, index)}
-                                                    key={index}>More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+                                            <button className="button-moreinfo">More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>

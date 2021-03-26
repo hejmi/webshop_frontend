@@ -77,9 +77,22 @@ class App extends Component {
                                <NavDropdown title="Categories" id="categories-nav-dropdown">
                                    {categories &&
                                    categories.map((category, index) => (
-                                   <NavDropdown.Item key={index} className="navbar-dropdown" href={`/categories/${category.category_id}`}>
-                                       {category.category_name}
-                                   </NavDropdown.Item>
+                                       <div>
+                                       {category.parent_category_id === 0 ? (
+                                               <NavDropdown title={category.category_name} key={index} className="navbar-dropdown" href={`/categories/${category.id}`}>
+                                                   <div className="submenu">
+                                                   {categories &&
+                                                   categories.map((subcategory, indx) => (
+                                                       <a>
+                                                       {subcategory.parent_category_id === category.id ? (<div className="navbar-dropdown-sub"><Link to={`/categories/${subcategory.id}`}>{subcategory.category_name}</Link></div>) : (null)}
+                                                       </a>
+                                                       ))}
+                                                   </div>
+                                               </NavDropdown>
+                                           ) : (
+                                               <span> </span>
+                                           )}
+                                       </div>
                                    ))}
                                </NavDropdown>
                            </li>
