@@ -54,6 +54,10 @@ body {
 .navbar-menu {
   margin-left:0px;
 }
+.brands {
+  margin-left:10px;
+  width: 300px;
+}
 .first{
   margin-left:160px;
 }

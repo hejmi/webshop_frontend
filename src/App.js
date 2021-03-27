@@ -12,6 +12,7 @@ import Login from './components/Login'
 import ProductList from './components/ProductList'
 import CategoriesService from "./services/CategoriesService";
 import {NavDropdown} from "react-bootstrap";
+import BrandsService from "./services/BrandsService";
 
 class App extends Component {
     constructor(props) {
@@ -21,12 +22,14 @@ class App extends Component {
             user: null,
             cart: {},
             categories: [],
-            products: []
+            products: [],
+            brands: []
         };
     }
 
     componentDidMount() {
         this.retriveCategories();
+        this.retriveBrands();
         let cart = JSON.parse(localStorage.getItem('cart'));
         this.setState({cart})
         this.countItemsInCart()
@@ -52,8 +55,20 @@ class App extends Component {
             });
     }
 
+    retriveBrands() {
+        BrandsService.getAll()
+            .then(response => {
+                this.setState({
+                    brands: response.data
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
   render() {
-      const { categories } = this.state;
+      const { categories, brands } = this.state;
       return (
         <div className="container">
             <div><br/></div>
@@ -64,9 +79,17 @@ class App extends Component {
                    <div className="navbar-nav mr-auto col-12">
                        <div className="navbar-collapse col d-none">
                            <li className="navbar-menu first">
-                               <Link to="/" className="nav-link">
-                                   Shop By Brands
-                               </Link>
+                               <NavDropdown title="Shop By Brands" href="/" className="categories-nav-dropdown">
+                                   <div className="brands row" >
+                                   {brands &&
+                                   brands.map((brand, index) => (
+                                       <div className="col-6">
+                                       <a href={`/brands/${brand.id}`}><img src={`/images/brands/${brand.brand_logo}`} width="100" /></a>
+                                       </div>
+                                       ))}
+                                   </div>
+                               </NavDropdown>
+
                            </li>
                            <li className="navbar-menu">
                                <NavDropdown title="All Our Categories" id="categories-nav-dropdown">

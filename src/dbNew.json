@@ -367,6 +367,58 @@
       "category_name": "Stationary & Office"
     }
   ],
+  "brands" : [
+    {
+      "id": 1,
+      "brand_name": "Roblox",
+      "brand_logo": "roblox.png"
+    },
+    {
+      "id": 2,
+      "brand_name": "Marvel",
+      "brand_logo": "marvel.png"
+    },
+    {
+      "id": 3,
+      "brand_name": "DC Comics",
+      "brand_logo": "dccomics.png"
+    },
+    {
+      "id": 4,
+      "brand_name": "PlayStation",
+      "brand_logo": "playstation.png"
+    },
+    {
+      "id": 5,
+      "brand_name": "Stranger Things",
+      "brand_logo": "strangerthing.png"
+    },
+    {
+      "id": 6,
+      "brand_name": "Star Trek",
+      "brand_logo": "startrek.png"
+    },
+    {
+      "id": 7,
+      "brand_name": "Star Wars",
+      "brand_logo": "starwars.png"
+    },
+    {
+      "id": 8,
+      "brand_name": "Pokémon",
+      "brand_logo": "pokemon.png"
+    },
+    {
+      "id": 9,
+      "brand_name": "Xbox",
+      "brand_logo": "xbox.png"
+    },
+    {
+      "id": 10,
+      "brand_name": "Fortnite",
+      "brand_logo": "fortnite.png"
+    }
+  ],
   "featuredproducts" : [
     {
       "id": 2,
