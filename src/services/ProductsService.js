@@ -10,6 +10,14 @@ class ProductsService {
         return http.get("/products");
     }
 
+    getAllFromCat(id) {
+        return http.get(`/categories/${id}`);
+    }
+
+    getAllFromBrand(id) {
+        return http.get(`/brands/${id}`);
+    }
+
     get(id) {
         return http.get(`/products/${id}`);
     }

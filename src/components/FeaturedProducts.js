@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import FeaturedService from "../services/FeaturedService";
 import BootstrapCarousel from "./BootstrapCarousel";
 import BannerAreas from "./BannerAreas";
-import {HashRouter} from "react-router-dom";
 
 export default class FeaturedProducts extends Component {
     constructor(props) {

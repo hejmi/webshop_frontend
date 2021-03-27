@@ -84,7 +84,7 @@ class App extends Component {
                                    {brands &&
                                    brands.map((brand, index) => (
                                        <div className="col-3" key={index}>
-                                       <br/><Link to={`/brands/${brand.id}`}><img src={`/images/brands/${brand.brand_logo}`} height="80" width="80" className="brand-logo" /><br/><br/></Link>
+                                       <br/><Link to={`/brands/${brand.id}`}><img src={`/images/brands/${brand.brand_logo}`} height="80" width="80" alt="brand logo" className="brand-logo" /><br/><br/></Link>
                                        </div>
                                        ))}
                                    </div>
@@ -101,7 +101,7 @@ class App extends Component {
                                                    <div className="submenu">
                                                    {categories &&
                                                    categories.map((subcategory, indx) => (
-                                                       <a>
+                                                       <a href="/">
                                                        {subcategory.parent_category_id === category.id ? (<div className="navbar-dropdown-sub"><Link to={`/categories/${subcategory.id}`}>{subcategory.category_name}</Link></div>) : (null)}
                                                        </a>
                                                        ))}
