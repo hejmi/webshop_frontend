@@ -2,5 +2,7 @@
   "/api/*": "/$1",
   "/api/:resource/:id/show": "/:resource/:id",
   "/api/:resource/:id": "/:resource/:id",
-  "/api/products/:id": "/products/:id"
+  "/api/products/:id": "/products/:id",
+  "/api/brands/:id": "/brands/:id",
+  "/api/categories/:id": "/categories/:id"
 }

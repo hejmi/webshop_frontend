@@ -9,13 +9,16 @@ export class BootstrapCarousel extends Component {
             <div className="container">
                 <Carousel>
                     <Carousel.Item>
-                        <img className="d-block w-100" src={'/images/slides/slide1.png'} alt="First slide" />
+                        <a href="/brands/3"><img className="d-block w-100" src={'/images/slides/aquaman.jpg'} alt="DC Comics slide" /></a>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className="d-block w-100" src={'/images/slides/slide3.png'} alt="Second slide" />
+                        <a href="/brands/2"><img className="d-block w-100" src={'/images/slides/marvel.jpg'} alt="Marvel slide" /></a>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className="d-block w-100" src={'/images/slides/slide1.png'} alt="Third slide" />
+                        <a href="/brands/10"><img className="d-block w-100" src={'/images/slides/fortnite.png'} alt="Fortnite slide" /></a>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <a href="/brands/5"><img className="d-block w-100" src={'/images/slides/strangerthings.jpg'} alt="Stranger Things slide" /></a>
                     </Carousel.Item>
                 </Carousel>
             </div>

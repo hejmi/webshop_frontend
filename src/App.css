@@ -56,7 +56,15 @@ body {
 }
 .brands {
   margin-left:10px;
-  width: 300px;
+  width: 600px;
+}
+.brand-logo {
+  filter: grayscale(100%);
+}
+.brand-logo:hover {
+  border: 1px dotted black;
+  padding:5px;
+
 }
 .first{
   margin-left:160px;

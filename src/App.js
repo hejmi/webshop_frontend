@@ -79,12 +79,12 @@ class App extends Component {
                    <div className="navbar-nav mr-auto col-12">
                        <div className="navbar-collapse col d-none">
                            <li className="navbar-menu first">
-                               <NavDropdown title="Shop By Brands" href="/" className="categories-nav-dropdown">
-                                   <div className="brands row" >
+                               <NavDropdown title="Shop By Brand" href="/" className="categories-nav-dropdown">
+                                   <div className="brands row">
                                    {brands &&
                                    brands.map((brand, index) => (
-                                       <div className="col-6">
-                                       <a href={`/brands/${brand.id}`}><img src={`/images/brands/${brand.brand_logo}`} width="100" /></a>
+                                       <div className="col-3" key={index}>
+                                       <br/><Link to={`/brands/${brand.id}`}><img src={`/images/brands/${brand.brand_logo}`} height="80" width="80" className="brand-logo" /><br/><br/></Link>
                                        </div>
                                        ))}
                                    </div>
@@ -92,7 +92,7 @@ class App extends Component {
 
                            </li>
                            <li className="navbar-menu">
-                               <NavDropdown title="All Our Categories" id="categories-nav-dropdown">
+                               <NavDropdown title="Shop By Category" id="categories-nav-dropdown">
                                    {categories &&
                                    categories.map((category, index) => (
                                        <div>
@@ -151,7 +151,9 @@ class App extends Component {
               </nav>
             <Switch>
                 <Route exact path="/products" component={ProductList} />
+                <Route exact path="/brands" component={ProductList} />
                 <Route path="/categories" component={ProductList} />
+                <Route path="/brands/" component={ProductList} />
                 <Route exact path="/" component={FeaturedProducts} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
