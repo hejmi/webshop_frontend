@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import FeaturedService from "../services/FeaturedService";
+import BootstrapCarousel from "./BootstrapCarousel";
+import BannerAreas from "./BannerAreas";
+import {HashRouter} from "react-router-dom";
 
 export default class FeaturedProducts extends Component {
     constructor(props) {
@@ -51,6 +54,8 @@ export default class FeaturedProducts extends Component {
         const {  featuredproducts } = this.state;
         return (
             <div className="container">
+                <BootstrapCarousel></BootstrapCarousel>
+                <br/>
                 <div className="featured-products">
                     <div className="title-header">
                         Featured Products
@@ -74,13 +79,16 @@ export default class FeaturedProducts extends Component {
                             </div><br/>
                                 <div className="product-info">
                                     <button className="button-moreinfo">More info</button>
-                                    <button className="button-addtocart" onClick={() => this.addToCart(featuredproduct) & window.location.reload(true) }>Add to cart</button>
-                                </div><br/>
+                                    <button className="button-addtocart" onClick={() => this.addToCart(featuredproduct) & window.location.reload("/cart") }>Add to cart</button>
+                                </div>
+                                <br/><p>&nbsp;</p>
                             </div>
                         ))}
+
                     </div>
 
                 </div>
+                <BannerAreas></BannerAreas>
             </div>
         )
     }

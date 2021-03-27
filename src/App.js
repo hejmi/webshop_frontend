@@ -3,7 +3,6 @@ import { Switch, Route, Link } from "react-router-dom"
 import * as Icon from "react-bootstrap-icons"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import BootstrapCarousel from "./components/BootstrapCarousel";
 import Footer from "./components/Footer";
 import FeaturedProducts from "./components/FeaturedProducts";
 
@@ -12,7 +11,6 @@ import Cart from './components/Cart'
 import Login from './components/Login'
 import ProductList from './components/ProductList'
 import CategoriesService from "./services/CategoriesService";
-import BannerAreas from "./components/BannerAreas";
 import {NavDropdown} from "react-bootstrap";
 
 class App extends Component {
@@ -60,21 +58,18 @@ class App extends Component {
         <div className="container">
             <div><br/></div>
                <nav className="navbar navbar-expand-md bg-dark col-12 d-none d-md-flex" role="navigation" aria-label="main navigation">
-                <div className="navbar-brand">
-                  <div className="navbar-item is-size-4 "><img src="/images/logo2.png" alt="logo" className="navbar-logo" /></div>
+                <div className="navbar-brand" >
+                    <div className="navbar-item"><a href="/"><img src="/images/logoandtext.png" alt="logo" className="navbar-logo" width="200" /></a></div>
                 </div>
                    <div className="navbar-nav mr-auto col-12">
                        <div className="navbar-collapse col d-none">
-                           <li className="navbar-menu">
-                               <div className="navbar-brand d-none d-lg-flex"><small>Inspec</small><b>Thor</b> &nbsp;<small>Gadget</small></div>
-                           </li>
-                           <li className="navbar-menu">
+                           <li className="navbar-menu first">
                                <Link to="/" className="nav-link">
-                                   Home
+                                   Shop By Brands
                                </Link>
                            </li>
                            <li className="navbar-menu">
-                               <NavDropdown title="Categories" id="categories-nav-dropdown">
+                               <NavDropdown title="All Our Categories" id="categories-nav-dropdown">
                                    {categories &&
                                    categories.map((category, index) => (
                                        <div>
@@ -131,12 +126,10 @@ class App extends Component {
                        </div>
                    </div>
               </nav>
-            <BootstrapCarousel></BootstrapCarousel>
-            <FeaturedProducts></FeaturedProducts>
-            <BannerAreas></BannerAreas>
             <Switch>
                 <Route exact path="/products" component={ProductList} />
-                <Route exact path="/" component={ProductList} />
+                <Route path="/categories" component={ProductList} />
+                <Route exact path="/" component={FeaturedProducts} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/add-product" component={AddProduct} />

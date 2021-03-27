@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductsService from "../services/ProductsService";
+import BannerAreas from "./BannerAreas";
 
 export default class Cart extends React.Component {
     constructor(props) {
@@ -67,8 +68,10 @@ export default class Cart extends React.Component {
     }
 
     clearCart = () => {
+        localStorage.clear();
         localStorage.removeItem('cart');
         this.setState({products: []});
+        this.setState({carts: []});
     }
 
     render() {
@@ -114,8 +117,9 @@ export default class Cart extends React.Component {
                 </div><br/>
             <Link to="/checkout">
                 <button className="button-addtocart float-right">Go to checkout</button></Link>
-            <button className="button-moreinfo float-right" onClick={() => this.clearCart & window.location.reload(true) }
+            <button className="button-moreinfo float-right" onClick={() => localStorage.clear() & window.location.reload(true) }
                     style={{ marginRight: "10px" }}>Empty Cart</button><br/><br/><br/>
+                <BannerAreas></BannerAreas>
             </div>
         );
     }
