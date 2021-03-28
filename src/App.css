@@ -210,6 +210,54 @@ button:hover{
   font-size: 14px;
   margin-right: 5px;
 }
+.footer-link {
+  /* RESET */
+  text-decoration: none;
+  line-height: 1;
+
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  padding: 5px 5px;
+  overflow: hidden;
+  color: #333;
+  vertical-align: bottom;
+  transition: color .3s ease-out;
+}
+
+.footer-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transform: translateY(calc(100% - 2px));
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(60deg, #000000 0%, #000000 100%);
+  transition: transform .25s ease-out;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+.footer-link:hover::before {
+  transform: translateY(0);
+  transition: transform .25s ease-out;
+}
+.container .footer-block a {
+  color: #333;
+  padding: 4px;
+}
+.container .footer-block a:hover {
+  color: #ccc;
+  background-color: #222222;
+  text-decoration: none;
+  -webkit-transition: background-color 500ms linear;
+  -moz-transition: all .4s ease-out;
+  -webkit-transition: all .4s ease-out;
+  -o-transition: all .4s ease-out;
+}
 .container .footer-block .row {
   padding-top: 35px;
 }
