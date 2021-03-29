@@ -69,6 +69,31 @@ export default class ProductList extends Component {
         return (
             <div className="row col-12">
                         <div className="container"><br/>
+                            {currentProduct ? (
+                                <div>
+                                    <br/>
+                                    <h4>Product</h4>
+                                    <div>
+                                        <label>
+                                            <strong>Name:</strong>
+                                        </label>{" "}
+                                        {currentProduct.product_name}
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <strong>Full Description:</strong>
+                                        </label>{" "}
+                                        {parse(currentProduct.full_desc)}
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <strong>Price:</strong>
+                                        </label>{" "}
+                                        {currentProduct.product_price}
+                                    </div>
+
+                                </div>
+                            ):(
                             <div className="row">
                             {products &&
                             products.map((product, index) => (
@@ -88,48 +113,14 @@ export default class ProductList extends Component {
                                             <div className="description">{product.short_desc}</div>
                                         </div>
                                         <div className="product-info">
-                                            <button className="button-moreinfo">More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+                                            <button className="button-moreinfo" onClick={() => this.setActiveProduct(product, index)} key={index}>More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                             </div>
+                                )}
                         </div>
-
-
-                <div className="container">
-                    {currentProduct ? (
-                        <div>
-                            <br/>
-                            <h4>Product</h4>
-                            <div>
-                                <label>
-                                    <strong>Name:</strong>
-                                </label>{" "}
-                                {currentProduct.product_name}
-                            </div>
-                            <div>
-                                <label>
-                                    <strong>Full Description:</strong>
-                                </label>{" "}
-                                {parse(currentProduct.full_description)}
-                            </div>
-                            <div>
-                                <label>
-                                    <strong>Price:</strong>
-                                </label>{" "}
-                                {currentProduct.product_price}
-                            </div>
-
-                            <Link
-                                to={"/docs/" + currentProduct.document_id}
-                                className="badge badge-warning"
-                            >
-                                Edit
-                            </Link>
-                        </div>
-                    ):(<div> </div>)}
-                </div>
             </div>
         );
     }

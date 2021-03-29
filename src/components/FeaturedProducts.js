@@ -77,7 +77,7 @@ export default class FeaturedProducts extends Component {
                                 </div>
                             </div><br/>
                                 <div className="product-info">
-                                    <button className="button-moreinfo">More info</button>
+                                    <button className="button-moreinfo"><a href={`/product/${featuredproduct.id}`} >More info</a></button>
                                     <button className="button-addtocart" onClick={() => this.addToCart(featuredproduct) & window.location.reload("/cart") }>Add to cart</button>
                                 </div>
                                 <br/><p>&nbsp;</p>

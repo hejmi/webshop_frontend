@@ -13,6 +13,7 @@ import ProductList from './components/ProductList'
 import CategoriesService from "./services/CategoriesService";
 import {NavDropdown} from "react-bootstrap";
 import BrandsService from "./services/BrandsService";
+import ProductView from "./components/ProductView";
 
 class App extends Component {
     constructor(props) {
@@ -153,10 +154,11 @@ class App extends Component {
                 <Route exact path="/products" component={ProductList} />
                 <Route exact path="/brands" component={ProductList} />
                 <Route path="/categories" component={ProductList} />
-                <Route path="/brands/" component={ProductList} />
+                <Route path="/brands" component={ProductList} />
                 <Route exact path="/" component={FeaturedProducts} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
+                <Route path="/product" component={ProductView} />
                 <Route exact path="/add-product" component={AddProduct} />
               </Switch>
             <Footer></Footer>
