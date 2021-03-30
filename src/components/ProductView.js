@@ -7,7 +7,8 @@ export default class ProductView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentProduct: []
+            currentProduct: [],
+            quantity: 1
         };
     }
 
