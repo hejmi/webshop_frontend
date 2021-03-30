@@ -372,3 +372,25 @@ button:hover{
 .container .cart-container .sign-button {
   font-size: 8px;
 }
+
+/* Product View */
+
+.currentproduct-name {
+  font-size: 22px;
+}
+.currentproduct-price {
+  font-size: 18px;
+}
+.currentproduct-attributes {
+  font-size: 18px;
+  min-height: 50px;
+  max-width: 400px;
+}
+.currentproduct-desc {
+  font-size: 18px;
+  min-height: 100px;
+  max-width: 400px;
+}
+.currentbutton-addtocart {
+  float: left;
+}

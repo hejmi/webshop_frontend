@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import FeaturedService from "../services/FeaturedService";
 import BootstrapCarousel from "./BootstrapCarousel";
 import BannerAreas from "./BannerAreas";
+import {Link} from "react-router-dom";
 
 export default class FeaturedProducts extends Component {
     constructor(props) {
@@ -77,7 +78,7 @@ export default class FeaturedProducts extends Component {
                                 </div>
                             </div><br/>
                                 <div className="product-info">
-                                    <button className="button-moreinfo"><a href={`/product/${featuredproduct.id}`} >More info</a></button>
+                                    <Link to={`/product/${featuredproduct.id}`}><button className="button-moreinfo">More info</button></Link>
                                     <button className="button-addtocart" onClick={() => this.addToCart(featuredproduct) & window.location.reload("/cart") }>Add to cart</button>
                                 </div>
                                 <br/><p>&nbsp;</p>
