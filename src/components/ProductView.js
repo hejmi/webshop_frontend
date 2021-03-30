@@ -16,7 +16,7 @@ export default class ProductView extends Component {
     }
 
     getProduct() {
-        let { id } = this.props.match.params.id
+        let { id } = this.props.match.params
         ProductsService.get(id)
             .then(response => {
                 this.setState({
@@ -50,23 +50,26 @@ export default class ProductView extends Component {
                     <div className="row">
                         {currentProduct &&
                         currentProduct.map((product, index) => (
-                            <div className="col-3 products" key={index}>
+                            <div className="row products" key={index}>
+                                <div className="col">
                                 {product.has_image === true ? (
-                                    <img alt={product.product_name} height="301" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
-                                ):(<img alt={product.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
-                                <div>
-                                    <div className="product-info">
-                                        <span className="product-name">{product.product_name}</span>
-                                        <span className="product-price">${product.product_price}</span>
-                                    </div>
-                                    <div className="product-info">
-                                        {product.sku.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{product.sku.attributeOptions.attribute.attribute_name} : {product.sku.attributeOptions.attribute_option_name}</small></span> ) : (
+                                    <img alt={product.product_name} height="600" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
+                                ):(<img alt={product.product_name} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                </div>
+                                <div className="col">
+
+                                    <div className="currentproduct-name">{product.product_name}</div>
+                                    <div className="currentproduct-price">${product.product_price}<br/><br/></div>
+
+                                    <div className="currentproduct-attributes">
+                                        {product.sku.attributeOptions.attribute.id === 3 ? ( <span className="description">{product.sku.attributeOptions.attribute.attribute_name} : {product.sku.attributeOptions.attribute_option_name}</span> ) : (
                                             <span className="description"> </span>
                                         )}
-                                        <div className="description">{product.short_desc}</div>
                                     </div>
-                                    <div className="product-info">
-                                        <button className="button-moreinfo">More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+
+                                    <div className="currentproduct-desc">{product.full_desc}</div>
+                                    <div>
+                                       <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
                                     </div>
                                 </div>
                             </div>

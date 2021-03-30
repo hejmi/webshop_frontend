@@ -87,7 +87,7 @@ class App extends Component {
                                       <div className="brands row">
                                           {brands &&
                                           brands.map((brand, index) => (
-                                              <div className="col-3" key={index}>
+                                              <div className="col-3" key={brand.id}>
                                                   <br/><Link to={`/brands/${brand.id}`}><img
                                                   src={`/images/brands/${brand.brand_logo}`} height="80" width="80"
                                                   alt="brand logo" className="brand-logo"/><br/><br/></Link>
@@ -101,15 +101,15 @@ class App extends Component {
                                   <NavDropdown title="Shop By Category" id="categories-nav-dropdown">
                                       {categories &&
                                       categories.map((category, index) => (
-                                          <div>
+                                          <div key={category.id}>
                                               {category.parent_category_id === 0 ? (
-                                                  <NavDropdown title={category.category_name} key={index}
+                                                  <NavDropdown title={category.category_name}
                                                                className="navbar-dropdown"
                                                                href={`/categories/${category.id}`}>
                                                       <div className="submenu">
                                                           {categories &&
                                                           categories.map((subcategory, indx) => (
-                                                              <div key={indx}>
+                                                              <div key={subcategory.id}>
                                                                   {subcategory.parent_category_id === category.id ? (
                                                                       <div className="navbar-dropdown-sub"><Link
                                                                           to={`/categories/${subcategory.id}`}>{subcategory.category_name}</Link>
@@ -168,7 +168,7 @@ class App extends Component {
                       <Route exact path="/" component={FeaturedProducts}/>
                       <Route exact path="/login" component={Login}/>
                       <Route exact path="/cart" component={Cart}/>
-                      <Route path="/product" component={ProductView}/>
+                      <Route path="/product/:id" component={ProductView}/>
                       <Route exact path="/add-product" component={AddProduct}/>
                   </Switch>
                   <Footer></Footer>

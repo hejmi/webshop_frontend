@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ProductsService from "../services/ProductsService";
 import parse from 'html-react-parser';
+import CategoriesService from "../services/CategoriesService";
+import BrandsService from "../services/BrandsService";
+import {Link} from "react-router-dom";
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -12,7 +15,8 @@ export default class ProductList extends Component {
             currentProduct: null,
             currentIndex: -1,
             quantity: 1,
-            searchTitle: ""
+            searchTitle: "",
+            topMessage: ""
         };
     }
 
@@ -28,7 +32,7 @@ export default class ProductList extends Component {
 
     retriveProducts() {
         let id = this.props.location.pathname.split("/")
-        {id[1] === "brands" ? (
+        if (id[1] === "brands") {
             ProductsService.getAllFromBrand(id[2])
                 .then(response => {
                     this.setState({
@@ -39,7 +43,13 @@ export default class ProductList extends Component {
                 .catch(e => {
                     console.log(e);
                 })
-            ) : (
+            BrandsService.get(id[2])
+                .then(response => {
+                    this.setState({
+                        topMessage: 'Showing all products from "' + response.data[0].brand_name + '"'
+                    })
+                })
+        } else {
                 ProductsService.getAllFromCat(id[2])
                     .then(response => {
                         this.setState({
@@ -50,7 +60,14 @@ export default class ProductList extends Component {
                     .catch(e => {
                         console.log(e);
                     })
-        )}
+                CategoriesService.get(id[2])
+                    .then(response => {
+                        this.setState({
+                            topMessage: 'Showing all products in "' + response.data[0].category_name + '" category'
+                        })
+                    })
+        }
+
 
     }
 
@@ -85,10 +102,11 @@ export default class ProductList extends Component {
     }
 
     render() {
-        const { products, currentProduct, currentIndex } = this.state;
+        const { products, currentProduct, topMessage } = this.state;
         return (
             <div className="row col-12">
                         <div className="container"><br/>
+                            <h5>{this.state.topMessage}</h5><br/>
                             <div className="row">
                             {products &&
                             products.map((product, index) => (
@@ -108,7 +126,8 @@ export default class ProductList extends Component {
                                             <div className="description">{product.short_desc}</div>
                                         </div>
                                         <div className="product-info">
-                                            <button className="button-moreinfo" onClick={() => this.setActiveProduct(product, index)} key={index}>More info</button> <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+                                            <Link to={`/product/${product.id}`}><button className="button-moreinfo">More info</button></Link>
+                                            <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
