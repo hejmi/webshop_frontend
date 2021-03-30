@@ -1,10 +1,5 @@
 import http from "../http-common";
 
-export function getCartProducts(cart) {
-    return http.get('/products', {cart})
-        .then(response => response.data);
-}
-
 class ProductsService {
     getAll() {
         return http.get("/products");

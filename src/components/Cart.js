@@ -11,7 +11,7 @@ export default class Cart extends React.Component {
             products: [],
             totals: 0,
             currentproduct: [],
-            carts: []
+            cartContents: []
         };
     }
 
@@ -34,16 +34,16 @@ export default class Cart extends React.Component {
                 .then(response => {
                     this.setState( {
                         products: this.state.products.concat([response.data]),
-                        carts: this.state.carts.concat({
-                            'id': response.data.id,
-                            'product_name': response.data.product_name,
-                            'product_price': response.data.product_price,
-                            'short_desc' : response.data.short_desc,
+                        cartContents: this.state.cartContents.concat({
+                            'id': response.data[0].id,
+                            'product_name': response.data[0].product_name,
+                            'product_price': response.data[0].product_price,
+                            'short_desc' : response.data[0].short_desc,
                             'qty' : currqty,
-                            'sku' : response.data.sku,
-                            'has_image' : response.data.has_image
+                            'sku' : response.data[0].sku,
+                            'has_image' : response.data[0].has_image
                         }),
-                        totals: this.state.totals + (response.data.product_price * currqty)
+                        totals: this.state.totals + (response.data[0].product_price * currqty)
                     })
                 })
                 .catch(e => {
@@ -75,7 +75,7 @@ export default class Cart extends React.Component {
     }
 
     render() {
-        const { products, totals, carts } =  this.state;
+        const { products, totals, cartContents } =  this.state;
         return (
             <div className="container">
                 <div className="cart-container">
@@ -83,7 +83,7 @@ export default class Cart extends React.Component {
                         Cart contents
                     </div>
              {
-                carts.map((product, index) =>
+                 cartContents.map((product, index) =>
                     <div className="cart" key={index}>
                         <div className="row">
                             <div className="col-2">

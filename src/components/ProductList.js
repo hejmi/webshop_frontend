@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ProductsService from "../services/ProductsService";
-import { Link } from "react-router-dom";
 import parse from 'html-react-parser';
 
 export default class ProductList extends Component {
@@ -21,17 +20,38 @@ export default class ProductList extends Component {
         this.retriveProducts();
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.match.params.id !== this.props.match.params.id){
+           this.retriveProducts()
+        }
+    }
+
     retriveProducts() {
-        ProductsService.getAll()
-            .then(response => {
-                this.setState({
-                    products: response.data
-                });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        let id = this.props.location.pathname.split("/")
+        {id[1] === "brands" ? (
+            ProductsService.getAllFromBrand(id[2])
+                .then(response => {
+                    this.setState({
+                        products: response.data
+                    });
+                    //console.log(response.data);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+            ) : (
+                ProductsService.getAllFromCat(id[2])
+                    .then(response => {
+                        this.setState({
+                            products: response.data
+                        });
+                        //console.log(response.data);
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+        )}
+
     }
 
     refreshList() {
@@ -69,31 +89,6 @@ export default class ProductList extends Component {
         return (
             <div className="row col-12">
                         <div className="container"><br/>
-                            {currentProduct ? (
-                                <div>
-                                    <br/>
-                                    <h4>Product</h4>
-                                    <div>
-                                        <label>
-                                            <strong>Name:</strong>
-                                        </label>{" "}
-                                        {currentProduct.product_name}
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <strong>Full Description:</strong>
-                                        </label>{" "}
-                                        {parse(currentProduct.full_desc)}
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <strong>Price:</strong>
-                                        </label>{" "}
-                                        {currentProduct.product_price}
-                                    </div>
-
-                                </div>
-                            ):(
                             <div className="row">
                             {products &&
                             products.map((product, index) => (
@@ -119,7 +114,31 @@ export default class ProductList extends Component {
                                 </div>
                             ))}
                             </div>
-                                )}
+                            {currentProduct ? (
+                                <div>
+                                    <br/>
+                                    <h4>Product</h4>
+                                    <div>
+                                        <label>
+                                            <strong>Name:</strong>
+                                        </label>{" "}
+                                        {currentProduct.product_name}
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <strong>Full Description:</strong>
+                                        </label>{" "}
+                                        {parse(currentProduct.full_desc)}
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <strong>Price:</strong>
+                                        </label>{" "}
+                                        {currentProduct.product_price}
+                                    </div>
+
+                                </div>
+                            ):( <div> </div> )}
                         </div>
             </div>
         );
