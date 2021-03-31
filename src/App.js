@@ -11,9 +11,10 @@ import Cart from './components/Cart'
 import Login from './components/Login'
 import ProductList from './components/ProductList'
 import CategoriesService from "./services/CategoriesService";
-import {NavDropdown} from "react-bootstrap";
+import {Dropdown, NavDropdown} from "react-bootstrap";
 import BrandsService from "./services/BrandsService";
 import ProductView from "./components/ProductView";
+import {isAuthenticated} from "./repositories/LoginAndAuthentication";
 
 
 class App extends Component {
@@ -25,7 +26,8 @@ class App extends Component {
             cart: {},
             categories: [],
             products: [],
-            brands: []
+            brands: [],
+            showUserMenu: "none"
         };
     }
 
@@ -35,6 +37,7 @@ class App extends Component {
         let cart = JSON.parse(localStorage.getItem('cart'));
         this.setState({cart})
         this.countItemsInCart()
+
     }
 
     countItemsInCart() {
@@ -67,6 +70,16 @@ class App extends Component {
             .catch(e => {
                 console.log(e);
             });
+    }
+
+    handleChange(e){
+        this.setState({[e.target.name]: e.target.value})
+        console.log(e.target.value)
+    }
+
+    logout() {
+        localStorage.removeItem('x-access-token-expiration')
+        localStorage.removeItem('x-access-token')
     }
 
   render() {
@@ -133,20 +146,29 @@ class App extends Component {
                           <div className="navbar-collapse col-md-auto navbar-right">
                               <form className="form-inline mt-2 mt-md-0">
                                   <input className="form-control mr-sm-2" type="text" placeholder="Search"
-                                         aria-label="Search"/>
+                                         aria-label="Search" value={this.state.value} onChange={(e) => this.handleChange(e)} />
                                   <button className="button" type="submit">Search</button>
                               </form>
                               <li className="nav-item">
-                                  {!this.state.user ? (
+                                  {!isAuthenticated() ? (
                                       <Link to="/login" className="nav-link">
                                           <Icon.PersonFill/>
                                       </Link>
                                   ) : (
-                                      <Link to="/" onClick={this.logout} className="nav-link">
-                                          Logout
-                                      </Link>
+                                      <Dropdown>
+                                          <Dropdown.Toggle variant="none" id="dropdown-custom-1">
+                                              <Icon.PersonFill />
+                                          </Dropdown.Toggle>
+
+                                          <Dropdown.Menu id="dropdown-custom-2">
+                                              <Dropdown.Item id="dropdown-item-custom" href="/myprofile"><Icon.PersonFill size={18} /> User Profile</Dropdown.Item>
+                                              <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.GearFill size={18} /> Settings</Dropdown.Item>
+                                              <Dropdown.Item id="dropdown-item-custom" href="/" onClick={this.logout}><Icon.EmojiFrownFill size={18} /> Logout</Dropdown.Item>
+                                          </Dropdown.Menu>
+                                      </Dropdown>
                                   )}
                               </li>
+
                               <li className="nav-item">
                                   <Link to="/cart" className="nav-link">
                                       <Icon.Cart2/>
@@ -166,7 +188,7 @@ class App extends Component {
                       <Route path="/brands/:id" component={ProductList}/>
                       <Route path="/categories/:id" component={ProductList}/>
                       <Route exact path="/" component={FeaturedProducts}/>
-                      <Route exact path="/login" component={Login}/>
+                      <Route path="/login" component={Login}/>
                       <Route exact path="/cart" component={Cart}/>
                       <Route path="/product/:id" component={ProductView}/>
                       <Route exact path="/add-product" component={AddProduct}/>

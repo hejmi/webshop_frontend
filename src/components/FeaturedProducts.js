@@ -65,9 +65,11 @@ export default class FeaturedProducts extends Component {
                         featuredproducts.map((featuredproduct, index) => (
                             <div className="product-container" key={index}>
                             <div className="featured-product col" >
+                                <Link to={`/product/${featuredproduct.id}`}>
                                 {featuredproduct.has_image === true ? (
                                     <img alt={featuredproduct.product_name} height="301" src={`/images/products/product-${featuredproduct.sku.sku}.jpg`} className="product-image"/>
                                 ):(<img alt={featuredproduct.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                </Link>
                                 <div className="row">
                                     <div className="product-name">{featuredproduct.product_name}</div><div className="price-tag"><b>${featuredproduct.product_price}</b></div>
                                 </div>

@@ -68,8 +68,8 @@ export default class Cart extends React.Component {
     }
 
     clearCart = () => {
-        localStorage.clear();
         localStorage.removeItem('cart');
+        localStorage.removeItem('carts');
         this.setState({products: []});
         this.setState({carts: []});
     }

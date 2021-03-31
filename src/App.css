@@ -394,3 +394,24 @@ button:hover{
 .currentbutton-addtocart {
   float: left;
 }
+#dropdown-custom-1{
+  color: #888888;
+  font-size: 18px;
+}
+#dropdown-custom-1:hover {
+  background-color: #eeeeee;
+  border: 1px solid #eeeeee;
+}
+#dropdown-custom-2 {
+  min-height: 100px;
+  background-color: #FFFFFF;
+  -moz-transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  width: 150px;
+  border:1px solid #aaaaaa;
+  border-radius: 5px;
+}
+#dropdown-item-custom:hover {
+  background-color: #DAE8FC;
+}

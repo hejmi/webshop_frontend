@@ -99,6 +99,7 @@ export default class ProductList extends Component {
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setState({cart});
+        this.forceUpdate();
     }
 
     render() {
@@ -111,9 +112,11 @@ export default class ProductList extends Component {
                             {products &&
                             products.map((product, index) => (
                                 <div className="col-3 products" key={index}>
+                                    <Link to={`/product/${product.id}`}>
                                     {product.has_image === true ? (
                                     <img alt={product.product_name} height="301" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
                                         ):(<img alt={product.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    </Link>
                                     <div>
                                         <div className="product-info">
                                             <span className="product-name">{product.product_name}</span>
