@@ -53,22 +53,22 @@ export default class ProductView extends Component {
                         currentProduct.map((product, index) => (
                             <div className="row products" key={index}>
                                 <div className="col">
-                                {product.has_image === true ? (
-                                    <img alt={product.product_name} height="600" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
-                                ):(<img alt={product.product_name} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                {product.products.has_image === true ? (
+                                    <img alt={product.products.product_name} height="600" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                ):(<img alt={product.products.product_name} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
                                 </div>
                                 <div className="col">
 
-                                    <div className="currentproduct-name">{product.product_name}</div>
-                                    <div className="currentproduct-price">${product.product_price}<br/><br/></div>
+                                    <div className="currentproduct-name">{product.products.product_name}</div>
+                                    <div className="currentproduct-price">${product.products.product_price}<br/><br/></div>
 
                                     <div className="currentproduct-attributes">
-                                        {product.sku.attributeOptions.attribute.id === 3 ? ( <span className="description">{product.sku.attributeOptions.attribute.attribute_name} : {product.sku.attributeOptions.attribute_option_name}</span> ) : (
+                                        {product.attributeOptions.attribute.id === 3 ? ( <span className="description">{product.attributeOptions.attribute.attribute_name} : {product.attributeOptions.attribute_option_name}</span> ) : (
                                             <span className="description"> </span>
                                         )}
                                     </div>
 
-                                    <div className="currentproduct-desc">{product.full_desc}</div>
+                                    <div className="currentproduct-desc">{product.products.full_desc}</div>
                                     <div>
                                        <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
                                     </div>

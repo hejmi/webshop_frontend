@@ -113,24 +113,33 @@ export default class ProductList extends Component {
                             products.map((product, index) => (
                                 <div className="col-3 products" key={index}>
                                     <Link to={`/product/${product.id}`}>
-                                    {product.has_image === true ? (
-                                    <img alt={product.product_name} height="301" src={`/images/products/product-${product.sku.sku}.jpg`} className="product-image"/>
-                                        ):(<img alt={product.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    {product.products.has_image === true ? (
+                                    <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                        ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                     <div>
                                         <div className="product-info">
-                                            <span className="product-name">{product.product_name}</span>
-                                            <span className="product-price">${product.product_price}</span>
+                                            <span className="product-name">{product.products.product_name}</span>
+                                            <span className="product-price">${product.products.product_price}</span>
                                         </div>
                                         <div className="product-info">
-                                            {product.sku.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{product.sku.attributeOptions.attribute.attribute_name} : {product.sku.attributeOptions.attribute_option_name}</small></span> ) : (
+                                            {product.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{product.attributeOptions.attribute.attribute_name} : {product.attributeOptions.attribute_option_name}</small></span> ) : (
                                                 <span className="description"> </span>
                                             )}
-                                            <div className="description">{product.short_desc}</div>
+                                            <div className="description">{product.products.short_desc}</div>
                                         </div>
                                         <div className="product-info">
-                                            <Link to={`/product/${product.id}`}><button className="button-moreinfo">More info</button></Link>
-                                            <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+                                            {product.attributeOptions.attribute.id !== 3 && product.attributeOptions.attribute.id !== 0 ? (
+                                                    <span>
+                                                        <Link to={`/product/${product.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${product.id}`}><button className="button-addtocart">See Options</button></Link>
+                                                    </span>
+                                                ) : (
+                                                    <span>
+                                                        <Link to={`/product/${product.products.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
+                                                    </span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

@@ -14,7 +14,7 @@ class ProductsService {
     }
 
     get(id) {
-        return http.get(`/products/${id}`);
+        return http.get(`/sku/id/${id}`);
     }
 
     create(data) {

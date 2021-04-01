@@ -36,14 +36,15 @@ export default class Cart extends React.Component {
                         products: this.state.products.concat([response.data]),
                         cartContents: this.state.cartContents.concat({
                             'id': response.data[0].id,
-                            'product_name': response.data[0].product_name,
-                            'product_price': response.data[0].product_price,
-                            'short_desc' : response.data[0].short_desc,
+                            'product_name': response.data[0].products.product_name,
+                            'product_price': response.data[0].products.product_price,
+                            'short_desc' : response.data[0].products.short_desc,
                             'qty' : currqty,
                             'sku' : response.data[0].sku,
-                            'has_image' : response.data[0].has_image
+                            'has_image' : response.data[0].products.has_image,
+                            'attrOption' : response.data[0].attributeOptions.attribute.attribute_name + " : " + response.data[0].attributeOptions.attribute_option_name
                         }),
-                        totals: this.state.totals + (response.data[0].product_price * currqty)
+                        totals: this.state.totals + (response.data[0].products.product_price * currqty)
                     })
                 })
                 .catch(e => {
@@ -88,11 +89,12 @@ export default class Cart extends React.Component {
                         <div className="row">
                             <div className="col-2">
                                 {product.has_image === true ? (
-                                    <img alt={product.product_name} height="100" src={`/images/products/product-${product.sku.sku}.jpg`} />
+                                    <img alt={product.product_name} height="100" src={`/images/products/product-${product.sku}.jpg`} />
                                 ):(<img alt={product.product_name} height="100" src="/images/products/imageiscomingsoon.jpg"/>)}
                             </div>
                             <div className="col-4">
                                 <span className="product-name">{product.product_name}</span><br/>
+                                <span>{product.attrOption}</span><br/>
                                 <span>{product.short_desc}</span>
                             </div>
                             <div className="col-3">

@@ -19,6 +19,7 @@ export default class FeaturedProducts extends Component {
 
     componentDidMount() {
         this.getFeaturedProducts();
+        console.log(localStorage.getItem('cart'))
     }
 
     getFeaturedProducts() {
@@ -65,22 +66,22 @@ export default class FeaturedProducts extends Component {
                         featuredproducts.map((featuredproduct, index) => (
                             <div className="product-container" key={index}>
                             <div className="featured-product col" >
-                                <Link to={`/product/${featuredproduct.id}`}>
-                                {featuredproduct.has_image === true ? (
-                                    <img alt={featuredproduct.product_name} height="301" src={`/images/products/product-${featuredproduct.sku.sku}.jpg`} className="product-image"/>
-                                ):(<img alt={featuredproduct.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                <Link to={`/product/${featuredproduct.products.id}`}>
+                                {featuredproduct.products.has_image === true ? (
+                                    <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.sku}.jpg`} className="product-image"/>
+                                ):(<img alt={featuredproduct.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                 </Link>
                                 <div className="row">
-                                    <div className="product-name">{featuredproduct.product_name}</div><div className="price-tag"><b>${featuredproduct.product_price}</b></div>
+                                    <div className="product-name">{featuredproduct.products.product_name}</div><div className="price-tag"><b>${featuredproduct.products.product_price}</b></div>
                                 </div>
                                 <div className="row">
-                                    <div className="product-description">{featuredproduct.sku.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{featuredproduct.sku.attributeOptions.attribute.attribute_name} : {featuredproduct.sku.attributeOptions.attribute_option_name}</small><br/></span> ) : (
+                                    <div className="product-description">{featuredproduct.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{featuredproduct.attributeOptions.attribute.attribute_name} : {featuredproduct.attributeOptions.attribute_option_name}</small><br/></span> ) : (
                                         <span className="description"> </span>
-                                    )}{featuredproduct.short_desc}</div>
+                                    )}{featuredproduct.products.short_desc}</div>
                                 </div>
                             </div><br/>
                                 <div className="product-info">
-                                    <Link to={`/product/${featuredproduct.id}`}><button className="button-moreinfo">More info</button></Link>
+                                    <Link to={`/product/${featuredproduct.products.id}`}><button className="button-moreinfo">More info</button></Link>
                                     <button className="button-addtocart" onClick={() => this.addToCart(featuredproduct) & window.location.reload("/cart") }>Add to cart</button>
                                 </div>
                                 <br/><p>&nbsp;</p>
