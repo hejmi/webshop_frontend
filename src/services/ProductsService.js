@@ -28,5 +28,9 @@ class ProductsService {
     delete(id) {
         return http.delete(`/products/${id}`);
     }
+
+    search(keyword) {
+        return http.get(`/products/search?keyword=${keyword}`);
+    }
 }
 export default new ProductsService();
