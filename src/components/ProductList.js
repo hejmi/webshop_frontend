@@ -112,27 +112,31 @@ export default class ProductList extends Component {
                             {products &&
                             products.map((product, index) => (
                                 <div className="col-3 products" key={index}>
-                                    <Link to={`/product/${product.id}`}>
-                                    {product.products.has_image === true ? (
-                                    <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                    {product.attributeOptions.attribute.id !== 0  ? (
+                                    <Link to={`/product/${product.products.id}`}>
+                                        {product.products.has_image === true ? (
+                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
                                         ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
+                                        ) : (
+                                    <Link to={`/product/${product.products.id}`}>
+                                        {product.products.has_image === true ? (
+                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                        ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    </Link>
+                                        )}
                                     <div>
                                         <div className="product-info">
                                             <span className="product-name">{product.products.product_name}</span>
                                             <span className="product-price">${product.products.product_price}</span>
                                         </div>
-                                        <div className="product-info">
-                                            {product.attributeOptions.attribute.id === 3 ? ( <span className="description"><small>{product.attributeOptions.attribute.attribute_name} : {product.attributeOptions.attribute_option_name}</small></span> ) : (
-                                                <span className="description"> </span>
-                                            )}
                                             <div className="description">{product.products.short_desc}</div>
                                         </div>
                                         <div className="product-info">
-                                            {product.attributeOptions.attribute.id !== 3 && product.attributeOptions.attribute.id !== 0 ? (
+                                            {product.attributeOptions.attribute.id !== 0  ? (
                                                     <span>
-                                                        <Link to={`/product/${product.id}`}><button className="button-moreinfo">More info</button></Link>
-                                                        <Link to={`/product/${product.id}`}><button className="button-addtocart">See Options</button></Link>
+                                                        <Link to={`/product/${product.products.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${product.products.id}`}><button className="button-addtocart">See Options</button></Link>
                                                     </span>
                                                 ) : (
                                                     <span>
@@ -141,7 +145,6 @@ export default class ProductList extends Component {
                                                     </span>
                                             )}
                                         </div>
-                                    </div>
                                 </div>
                             ))}
                             </div>

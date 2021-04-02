@@ -14,7 +14,12 @@ class ProductsService {
     }
 
     get(id) {
-        return http.get(`/sku/id/${id}`);
+        //return http.get(`/sku/id/${id}`);
+        return http.get(`/products/${id}`);
+    }
+
+    getAttributesFor(id) {
+        return http.get(`/attributes/product/${id}`);
     }
 
     create(data) {

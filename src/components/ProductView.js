@@ -1,19 +1,20 @@
 import React, {Component} from "react";
 import ProductsService from "../services/ProductsService";
-import parse from "html-react-parser";
-import {Link} from "react-router-dom";
+import { Dropdown } from 'semantic-ui-react'
 
 export default class ProductView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentProduct: [],
-            quantity: 1
+            quantity: 1,
+            attributes: []
         };
     }
 
     componentDidMount() {
         this.getProduct();
+        this.getProductAttributes();
     }
 
     getProduct() {
@@ -22,6 +23,18 @@ export default class ProductView extends Component {
             .then(response => {
                 this.setState({
                     currentProduct: response.data
+                });
+            })
+            .catch(e => {
+            });
+    }
+
+    getProductAttributes() {
+        let { id } = this.props.match.params
+        ProductsService.getAttributesFor(id)
+            .then(response => {
+                this.setState({
+                    attributes: response.data
                 });
             })
             .catch(e => {
@@ -44,7 +57,7 @@ export default class ProductView extends Component {
     }
 
     render() {
-        const { currentProduct } = this.state;
+        const { currentProduct, attributes } = this.state;
         return (
             <div className="row col-12">
                 <div className="container"><br/>
@@ -61,12 +74,16 @@ export default class ProductView extends Component {
 
                                     <div className="currentproduct-name">{product.products.product_name}</div>
                                     <div className="currentproduct-price">${product.products.product_price}<br/><br/></div>
+                                        {attributes &&
+                                        attributes.map((attribute, key) => (
+                                            <div className="currentproduct-attributes" key={key}>
+                                                {attribute.id !== 0 ? (
+                                                    <span className="description">{attribute.attribute.attribute_name} : {attribute.attribute_option_name}</span> ) : (
+                                                        <small></small>
+                                                )}
+                                            </div>
+                                        ))}
 
-                                    <div className="currentproduct-attributes">
-                                        {product.attributeOptions.attribute.id === 3 ? ( <span className="description">{product.attributeOptions.attribute.attribute_name} : {product.attributeOptions.attribute_option_name}</span> ) : (
-                                            <span className="description"> </span>
-                                        )}
-                                    </div>
 
                                     <div className="currentproduct-desc">{product.products.full_desc}</div>
                                     <div>
