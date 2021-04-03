@@ -12,9 +12,10 @@ class ProductsService {
     getAllFromBrand(id) {
         return http.get(`/brands/${id}`);
     }
-
+    getForCart(id) {
+        return http.get(`/sku/id/${id}`);
+    }
     get(id) {
-        //return http.get(`/sku/id/${id}`);
         return http.get(`/products/${id}`);
     }
 

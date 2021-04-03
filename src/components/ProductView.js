@@ -8,7 +8,8 @@ export default class ProductView extends Component {
         this.state = {
             currentProduct: [],
             quantity: 1,
-            attributes: []
+            attributes: [],
+            optionid: null
         };
     }
 
@@ -44,11 +45,18 @@ export default class ProductView extends Component {
     addToCart = (data) => {
         let cart = localStorage.getItem('cart')
             ? JSON.parse(localStorage.getItem('cart')) : {};
-        let id = data.id.toString();
+        let id = null
+        {this.state.optionid === null || this.state.optionid === 0 ? (
+            id = data.id.toString()
+        ):(
+            id = this.state.optionid
+        )}
+
         cart[id] = (cart[id] ? cart[id]: 0);
         let qty = cart[id] + parseInt(this.state.quantity);
         if (data.stock < qty) {
             cart[id] = data.stock;
+            this.setState({warningText: 'You already have the last item in your cart!'})
         } else {
             cart[id] = qty
         }
@@ -56,8 +64,14 @@ export default class ProductView extends Component {
         this.setState({cart});
     }
 
+    handleSelectChange (e) {
+        this.setState({optionid: e.target.value})
+
+        console.log(e.target.value)
+    }
+
     render() {
-        const { currentProduct, attributes } = this.state;
+        const { currentProduct, attributes, warningText } = this.state;
         return (
             <div className="row col-12">
                 <div className="container"><br/>
@@ -74,20 +88,25 @@ export default class ProductView extends Component {
 
                                     <div className="currentproduct-name">{product.products.product_name}</div>
                                     <div className="currentproduct-price">${product.products.product_price}<br/><br/></div>
-                                        {attributes &&
-                                        attributes.map((attribute, key) => (
-                                            <div className="currentproduct-attributes" key={key}>
-                                                {attribute.id !== 0 ? (
-                                                    <span className="description">{attribute.attribute.attribute_name} : {attribute.attribute_option_name}</span> ) : (
+                                            <div className="currentproduct-attributes">
+                                                {product.attributeOptions.id !== 0 ? (
+                                                    <span className="description">Please Choose {product.attributeOptions.attribute.attribute_name}: <br/>
+                                                        <select defaultValue={1} name={product.attributeOptions.attribute.attribute_name} onChange={(e) => this.handleSelectChange(e)} >
+                                                         <option disabled value={1}>{product.attributeOptions.attribute.attribute_name}</option>
+                                                        {attributes.map((attop, key) => (
+                                                            <option key={key} value={attop.id}>{attop.attributeOptions.attribute_option_name}</option>
+                                                        ))}
+                                                        </select>
+                                                        <br/><br/></span> ) : (
                                                         <small></small>
                                                 )}
-                                            </div>
-                                        ))}
 
+                                            </div>
 
                                     <div className="currentproduct-desc">{product.products.full_desc}</div>
-                                    <div>
-                                       <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
+                                    <div>{product.stock === 1 ? ( <span><i><b><font color='#8b0000'>This is the last item in stock!</font></b></i><br/></span> ):( <span> </span> )}
+                                       <button id="submitButton" onClick={(e) => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
+                                        <br/><br/><h5><font color='#8b0000'>{warningText}</font></h5><br/>
                                     </div>
                                 </div>
                             </div>

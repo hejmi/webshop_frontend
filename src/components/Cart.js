@@ -30,7 +30,7 @@ export default class Cart extends React.Component {
         for (let i=0; i<this.countItemsInCart(); i++) {
             let currprodid = productid[i];
             let currqty = quantities[i];
-            ProductsService.get(currprodid)
+            ProductsService.getForCart(currprodid)
                 .then(response => {
                     this.setState( {
                         products: this.state.products.concat([response.data]),
@@ -57,6 +57,7 @@ export default class Cart extends React.Component {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (!cart) return;
         this.buildCart()
+        console.log(cart)
     }
 
     removeFromCart = (product) => {
