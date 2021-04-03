@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import ProductsService from "../services/ProductsService";
-import { Dropdown } from 'semantic-ui-react'
 
 export default class ProductView extends Component {
     constructor(props) {
