@@ -57,7 +57,6 @@ export default class Cart extends React.Component {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (!cart) return;
         this.buildCart()
-        console.log(cart)
     }
 
     removeFromCart = (product) => {

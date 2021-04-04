@@ -1,8 +1,10 @@
 import http from "../http-common";
+import sha256 from "sha256";
+
 
 export function login (data) {
     return http.post('/accounts/auth',
-        { username: data.username, password: data.password })
+        { username: data.username, password: sha256(data.password) })
         .then(response => {
             if (response.data === true) {
             localStorage.setItem('x-access-token', response.data.token);
