@@ -115,13 +115,13 @@ export default class ProductList extends Component {
                                     {product.attributeOptions.attribute.id !== 0  ? (
                                     <Link to={`/product/${product.products.id}`}>
                                         {product.products.has_image === true ? (
-                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
                                         ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                         ) : (
                                     <Link to={`/product/${product.products.id}`}>
                                         {product.products.has_image === true ? (
-                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
                                         ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                         )}

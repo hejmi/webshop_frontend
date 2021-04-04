@@ -36,6 +36,7 @@ export default class Cart extends React.Component {
                         products: this.state.products.concat([response.data]),
                         cartContents: this.state.cartContents.concat({
                             'id': response.data[0].id,
+                            'image_id' : response.data[0].products.id,
                             'product_name': response.data[0].products.product_name,
                             'product_price': response.data[0].products.product_price,
                             'short_desc' : response.data[0].products.short_desc,
@@ -89,7 +90,7 @@ export default class Cart extends React.Component {
                         <div className="row">
                             <div className="col-2">
                                 {product.has_image === true ? (
-                                    <img alt={product.product_name} height="100" src={`/images/products/product-${product.sku}.jpg`} />
+                                    <img alt={product.product_name} height="100" src={`/images/products/product-${product.image_id}.jpg`} />
                                 ):(<img alt={product.product_name} height="100" src="/images/products/imageiscomingsoon.jpg"/>)}
                             </div>
                             <div className="col-4">

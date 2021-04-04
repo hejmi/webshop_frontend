@@ -7,6 +7,7 @@ export function login (data) {
         { username: data.username, password: sha256(data.password) })
         .then(response => {
             if (response.data === true) {
+            localStorage.setItem('lUser', response.data.id);
             localStorage.setItem('x-access-token', response.data.token);
             localStorage.setItem('x-access-token-expiration',
                 Date.now() + 2 * 60 * 60 * 1000);

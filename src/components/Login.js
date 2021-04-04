@@ -13,7 +13,6 @@ export default class Login extends React.Component{
     submitLogin = (event) => {
         event.preventDefault();
         login(this.state)
-            //.then(token => window.location = '/').catch(err => console.log(err));
     }
 
     render() {

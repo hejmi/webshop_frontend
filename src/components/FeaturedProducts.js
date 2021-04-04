@@ -19,7 +19,6 @@ export default class FeaturedProducts extends Component {
 
     componentDidMount() {
         this.getFeaturedProducts();
-        console.log(localStorage.getItem('cart'))
     }
 
     getFeaturedProducts() {
@@ -69,13 +68,13 @@ export default class FeaturedProducts extends Component {
                                 {featuredproduct.attributeOptions.attribute.id !== 0  ? (
                                     <Link to={`/product/${featuredproduct.products.id}`}>
                                         {featuredproduct.products.has_image === true ? (
-                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.sku}.jpg`} className="product-image"/>
+                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.products.id}.jpg`} className="product-image"/>
                                         ):(<img alt={featuredproduct.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                 ) : (
                                     <Link to={`/product/${featuredproduct.products.id}`}>
                                         {featuredproduct.products.has_image === true ? (
-                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.sku}.jpg`} className="product-image"/>
+                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.products.id}.jpg`} className="product-image"/>
                                         ):(<img alt={featuredproduct.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                 )}
