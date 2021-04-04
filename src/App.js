@@ -39,6 +39,7 @@ class App extends Component {
         let cart = JSON.parse(localStorage.getItem('cart'));
         this.setState({cart})
         this.countItemsInCart()
+        // console.log(localStorage.getItem('login-user')); // gets the id of logged in user
     }
 
     countItemsInCart() {

@@ -80,7 +80,7 @@ export default class ProductView extends Component {
                             <div className="row products" key={index}>
                                 <div className="col">
                                 {product.products.has_image === true ? (
-                                    <img alt={product.products.product_name} height="600" src={`/images/products/product-${product.sku}.jpg`} className="product-image"/>
+                                    <img alt={product.products.product_name} height="600" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
                                 ):(<img alt={product.products.product_name} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
                                 </div>
                                 <div className="col">
