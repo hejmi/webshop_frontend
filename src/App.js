@@ -182,12 +182,13 @@ class App extends Component {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu id="dropdown-custom-2">
-                                            <Dropdown.Item id="dropdown-item-custom" href="/myprofile"><Icon.PersonFill
+                                            <Dropdown.Item id="dropdown-item-custom" href="/myprofile"><Icon.HouseDoorFill
                                                 size={18}/> My Account</Dropdown.Item>
-                                            <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.GearFill
-                                                size={18}/> Settings</Dropdown.Item>
+                                            <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.Clipboard
+                                                size={18}/> My Orders</Dropdown.Item>
+                                            <Dropdown.Divider></Dropdown.Divider>
                                             <Dropdown.Item id="dropdown-item-custom" href="/"
-                                                           onClick={this.logout}><Icon.EmojiFrownFill size={18}/> Logout</Dropdown.Item>
+                                                           onClick={this.logout}><Icon.PersonXFill size={18}/> Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 )}
@@ -195,7 +196,12 @@ class App extends Component {
 
                             <li className="nav-item">
                                 <Link to="/cart" className="nav-link">
-                                    <Icon.Cart2/>
+                                    {this.state.cartCount > 0 ? (
+                                        <Icon.BagFill/>
+                                    ) : (
+                                        <Icon.Bag/>
+                                    )}
+
                                     <span
                                         className="tag is-primary"
                                         style={{marginLeft: "5px", fontSize: "12px"}}
