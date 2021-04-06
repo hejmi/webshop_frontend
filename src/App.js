@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import Footer from "./components/Footer";
 import FeaturedProducts from "./components/FeaturedProducts";
+import { withRouter } from "react-router-dom";
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
@@ -47,10 +48,12 @@ class App extends Component {
     countItemsInCart() {
         let count = 0;
         let cart = JSON.parse(localStorage.getItem('cart'));
-        if (!cart) { this.setState({cartCount: 0 });
-        return null; }
+        if (!cart) {
+            this.setState({cartCount: 0});
+            return null;
+        }
         Object.values(cart).forEach(item => count = count + item)
-        this.setState({cartCount: count })
+        this.setState({cartCount: count})
     }
 
     retriveCategories() {
@@ -83,16 +86,7 @@ class App extends Component {
     }
 
     searchProduct(keyword) {
-        ProductsService.search(keyword)
-            .then(response => {
-                this.setState({
-                    products: response.data
-                });
-                response.data.forEach(d => console.log(d))
-            })
-            .catch(e => {
-                console.log(e);
-            })
+            this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
         console.log(this.state.keyword)
     }
 
@@ -170,10 +164,10 @@ class App extends Component {
                                        aria-label="Search"
                                        value={this.state.value}
                                        onChange={(e) => this.handleChangeInSearchbar(e)}/>
-                                <button className="button"
-                                        type="button"
-                                        onClick={(e) => this.searchProduct(keyword)}>Search
-                                </button>
+                                    <button className="button"
+                                            type="button"
+                                            onClick={(e) => this.searchProduct(keyword)}>Search
+                                    </button>
                             </form>
                             <li className="nav-item">
                                 {!isAuthenticated() ? (
@@ -221,7 +215,8 @@ class App extends Component {
                     <Route exact path="/cart" component={Cart}/>
                     <Route path="/product/:id" component={ProductView}/>
                     <Route exact path="/add-product" component={AddProduct}/>
-                    <Route path="/myprofile" component={Customer} />
+                    <Route path="/myprofile" component={Customer}/>
+                    <Route path="/products" component={ProductList}/>
                 </Switch>
                 <Footer></Footer>
             </div>
@@ -229,4 +224,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);

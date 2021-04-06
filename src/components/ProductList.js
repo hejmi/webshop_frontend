@@ -32,6 +32,7 @@ export default class ProductList extends Component {
 
     retriveProducts() {
         let id = this.props.location.pathname.split("/")
+        let keyword = this.props.location.search.split("=")
         if (id[1] === "brands") {
             ProductsService.getAllFromBrand(id[2])
                 .then(response => {
@@ -48,6 +49,17 @@ export default class ProductList extends Component {
                     this.setState({
                         topMessage: 'Showing all products from "' + response.data[0].brand_name + '"'
                     })
+                })
+        } else if (id[1] === "products") {
+            ProductsService.search(keyword[1])
+                .then(response => {
+                    this.setState({
+                        products: response.data
+                    });
+                    response.data.forEach(d => console.log(d))
+                })
+                .catch(e => {
+                    console.log(e);
                 })
         } else {
                 ProductsService.getAllFromCat(id[2])
