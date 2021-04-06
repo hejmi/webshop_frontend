@@ -16,6 +16,7 @@ import BrandsService from "./services/BrandsService";
 import ProductView from "./components/ProductView";
 import {isAuthenticated} from "./repositories/LoginAndAuthentication";
 import ProductsService from "./services/ProductsService";
+import Customer from "./components/Customer";
 
 
 class App extends Component {
@@ -29,7 +30,8 @@ class App extends Component {
             products: [],
             showUserMenu: "none",
             brands: [],
-            keyword: ""
+            keyword: "",
+            cartCount: null
         };
     }
 
@@ -45,9 +47,10 @@ class App extends Component {
     countItemsInCart() {
         let count = 0;
         let cart = JSON.parse(localStorage.getItem('cart'));
-        if (!cart) return 0;
+        if (!cart) { this.setState({cartCount: 0 });
+        return null; }
         Object.values(cart).forEach(item => count = count + item)
-        return count;
+        this.setState({cartCount: count })
     }
 
     retriveCategories() {
@@ -99,7 +102,7 @@ class App extends Component {
     }
 
     render() {
-        const {categories, brands, keyword} = this.state;
+        const {categories, brands, keyword, cartCount} = this.state;
         return (
             <div className="container">
                 <div><br/></div>
@@ -185,7 +188,7 @@ class App extends Component {
 
                                         <Dropdown.Menu id="dropdown-custom-2">
                                             <Dropdown.Item id="dropdown-item-custom" href="/myprofile"><Icon.PersonFill
-                                                size={18}/> User Profile</Dropdown.Item>
+                                                size={18}/> My Account</Dropdown.Item>
                                             <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.GearFill
                                                 size={18}/> Settings</Dropdown.Item>
                                             <Dropdown.Item id="dropdown-item-custom" href="/"
@@ -202,7 +205,7 @@ class App extends Component {
                                         className="tag is-primary"
                                         style={{marginLeft: "5px", fontSize: "12px"}}
                                     >
-                                       <div className="cart-items">{this.countItemsInCart()}</div>
+                                       <div className="cart-items">{this.state.cartCount}</div>
                   </span>
                                 </Link>
                             </li>
@@ -218,6 +221,7 @@ class App extends Component {
                     <Route exact path="/cart" component={Cart}/>
                     <Route path="/product/:id" component={ProductView}/>
                     <Route exact path="/add-product" component={AddProduct}/>
+                    <Route path="/myprofile" component={Customer} />
                 </Switch>
                 <Footer></Footer>
             </div>
