@@ -82,6 +82,9 @@ class App extends Component {
 
     handleChangeInSearchbar(e) {
         this.setState({keyword: e.target.value})
+        if (this.state.keyword.length >= 2) {
+            this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
+        }
     }
 
     searchProduct() {

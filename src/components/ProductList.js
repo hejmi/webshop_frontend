@@ -64,6 +64,15 @@ export default class ProductList extends Component {
                 .catch(e => {
                     console.log(e);
                 })
+        } else if(id[1] === "products") {
+            console.log(keyword[1])
+            ProductsService.search(keyword[1])
+                .then(response => {
+                    this.setState({
+                        products: response.data
+                    });
+                    response.data.forEach(d => console.log(d))
+                })
         } else {
                 ProductsService.getAllFromCat(id[2])
                     .then(response => {

@@ -16,7 +16,7 @@ export function login (data) {
         {username: data.username, password: sha256(data.password) })
         .then(response => {
             localStorage.setItem('login-user', response.data[0].id)
-            window.location = '/'
+            window.location = '/myprofile'
         })
         .catch(err => Promise.reject('Authentication Failed!'));
 }
