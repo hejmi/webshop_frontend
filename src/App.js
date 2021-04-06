@@ -82,12 +82,10 @@ class App extends Component {
 
     handleChangeInSearchbar(e) {
         this.setState({keyword: e.target.value})
-        console.log(e.target.value)
     }
 
-    searchProduct(keyword) {
+    searchProduct() {
             this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
-        console.log(this.state.keyword)
     }
 
     logout() {

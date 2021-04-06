@@ -28,6 +28,9 @@ export default class ProductList extends Component {
         if(prevProps.match.params.id !== this.props.match.params.id){
            this.retriveProducts()
         }
+        if(prevProps.location.search !== this.props.location.search) {
+            this.retriveProducts()
+        }
     }
 
     retriveProducts() {
