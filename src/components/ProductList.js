@@ -64,6 +64,9 @@ export default class ProductList extends Component {
                 .catch(e => {
                     console.log(e);
                 })
+            this.setState({
+                topMessage: 'Search Results for ' + keyword[1]
+            })
         } else {
                 ProductsService.getAllFromCat(id[2])
                     .then(response => {

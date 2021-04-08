@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import * as Icon from "react-bootstrap-icons";
-import CategoriesService from "../services/CategoriesService";
 import CustomersService from "../services/CustomersService";
+import {isAuthenticated} from "../repositories/LoginAndAuthentication";
+import {Link} from "react-router-dom";
 
 export class Customer extends Component {
     constructor(props) {
@@ -30,6 +30,7 @@ export class Customer extends Component {
         const { userData } = this.state;
         return (
                 <div className="container">
+                    {isAuthenticated() ? (
                         <div className="col-12">
                                 <h5><br/>My Account</h5>
                                 <h6><br/>My Information</h6>
@@ -50,6 +51,7 @@ export class Customer extends Component {
                                 </div>
                                 ))}
                         </div>
+                    ) : ( <div className="container"><h2>You Are Not Authenticated!</h2><h6>Please <a href='/login' ><small>login</small></a></h6></div>)}
                 </div>
         )
     }

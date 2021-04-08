@@ -18,6 +18,7 @@ import ProductView from "./components/ProductView";
 import {isAuthenticated, login} from "./repositories/LoginAndAuthentication";
 import ProductsService from "./services/ProductsService";
 import Customer from "./components/Customer";
+import {Administration} from "./components/Administration";
 
 
 class App extends Component {
@@ -95,6 +96,7 @@ class App extends Component {
     logout() {
         localStorage.removeItem('x-access-token-expiration')
         localStorage.removeItem('x-access-token')
+        localStorage.removeItem('login-user')
     }
 
     render() {
@@ -222,6 +224,7 @@ class App extends Component {
                     <Route exact path="/add-product" component={AddProduct}/>
                     <Route path="/myprofile" component={Customer}/>
                     <Route path="/products" component={ProductList}/>
+                    <Route path="/administration" component={Administration} />
                 </Switch>
                 <Footer></Footer>
             </div>
