@@ -15,7 +15,7 @@ import CategoriesService from "./services/CategoriesService";
 import {Dropdown, NavDropdown} from "react-bootstrap";
 import BrandsService from "./services/BrandsService";
 import ProductView from "./components/ProductView";
-import {isAuthenticated} from "./repositories/LoginAndAuthentication";
+import {isAuthenticated, login} from "./repositories/LoginAndAuthentication";
 import ProductsService from "./services/ProductsService";
 import Customer from "./components/Customer";
 
@@ -82,11 +82,12 @@ class App extends Component {
 
     handleChangeInSearchbar(e) {
         this.setState({keyword: e.target.value})
-        if (this.state.keyword.length >= 2) {
-            this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
-        }
     }
 
+    submitSearch = (event) => {
+        event.preventDefault();
+        this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
+    }
     searchProduct() {
             this.props.history.push(`/products/search?keyword=${this.state.keyword}`);
     }
@@ -158,17 +159,14 @@ class App extends Component {
                             </li>
                         </div>
                         <div className="navbar-collapse col-md-auto navbar-right">
-                            <form className="form-inline mt-2 mt-md-0">
+                            <form onSubmit={this.submitSearch} className="form-inline mt-2 mt-md-0">
                                 <input className="form-control mr-sm-2"
                                        type="text"
                                        placeholder="Search"
                                        aria-label="Search"
                                        value={this.state.value}
                                        onChange={(e) => this.handleChangeInSearchbar(e)}/>
-                                    <button className="button"
-                                            type="button"
-                                            onClick={(e) => this.searchProduct(keyword)}>Search
-                                    </button>
+                                    <button className="button" type="submit">Search</button>
                             </form>
                             <li className="nav-item">
                                 {!isAuthenticated() ? (
