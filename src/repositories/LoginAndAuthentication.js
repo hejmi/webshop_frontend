@@ -19,11 +19,13 @@ export function login (data) {
                 try {
                     if (response.data[0].role === "Admin") {
                         localStorage.setItem('login-user', response.data[0].id)
+                        localStorage.setItem('role', sha256(response.data[0].role))
                         redirectpath = '/administration'
                     } else {
+                        localStorage.setItem('login-user', response.data[0].id)
+                        localStorage.setItem('role', sha256(response.data[0].role))
                         redirectpath = '/myprofile'
                     }
-                    localStorage.setItem('login-user', response.data[0].id)
                     window.location = redirectpath
                 } catch (error) {
                   localStorage.setItem('loginfailed', 'true');
@@ -35,19 +37,13 @@ export function login (data) {
 export function isAuthenticated(){
     return localStorage.getItem('x-access-token') && localStorage.getItem('x-access-token-expiration') > Date.now()
 }
-export function isAdminAuthenticated(id){
-    http.get(`/accounts/auth/userdata/${localStorage.getItem('login-user')}`)
-        .then(response => {
-            try {
-                if (response.data[0].role !== "Admin") {
-                    window.location = '/myprofile'
-                }
-                console.log(response.data[0].role)
-                return(response.data[0].role)
-            } catch (error) {
-                window.location = '/'
-            }
-
-        })
-
+export function isAdminAuthenticated() {
+    if (!localStorage.getItem('role')) {
+        window.location('/')
+    }
+    if (localStorage.getItem('role') === 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f') {
+        return 'Admin'
+    } else {
+        return 'User'
+    }
 }

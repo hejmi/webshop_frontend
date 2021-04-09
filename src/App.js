@@ -15,8 +15,7 @@ import CategoriesService from "./services/CategoriesService";
 import {Dropdown, NavDropdown} from "react-bootstrap";
 import BrandsService from "./services/BrandsService";
 import ProductView from "./components/ProductView";
-import {isAuthenticated, login} from "./repositories/LoginAndAuthentication";
-import ProductsService from "./services/ProductsService";
+import {isAdminAuthenticated, isAuthenticated, login} from "./repositories/LoginAndAuthentication";
 import Customer from "./components/Customer";
 import {Administration} from "./components/Administration";
 
@@ -43,7 +42,6 @@ class App extends Component {
         let cart = JSON.parse(localStorage.getItem('cart'));
         this.setState({cart})
         this.countItemsInCart()
-        // console.log(localStorage.getItem('login-user')); // gets the id of logged in user
     }
 
     countItemsInCart() {
@@ -184,8 +182,13 @@ class App extends Component {
                                         <Dropdown.Menu id="dropdown-custom-2">
                                             <Dropdown.Item id="dropdown-item-custom" href="/myprofile"><Icon.HouseDoorFill
                                                 size={18}/> My Account</Dropdown.Item>
+                                            {isAdminAuthenticated() === "Admin" ? (
+                                                <Dropdown.Item id="dropdown-item-custom" href="/administration"><Icon.Clipboard
+                                                    size={18}/> Backend</Dropdown.Item>
+                                                ) : (
                                             <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.Clipboard
                                                 size={18}/> My Orders</Dropdown.Item>
+                                                )}
                                             <Dropdown.Divider></Dropdown.Divider>
                                             <Dropdown.Item id="dropdown-item-custom" href="/"
                                                            onClick={this.logout}><Icon.PersonXFill size={18}/> Logout</Dropdown.Item>

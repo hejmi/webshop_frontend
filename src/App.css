@@ -415,3 +415,24 @@ button:hover{
 #dropdown-item-custom:hover {
   background-color: #DAE8FC;
 }
+.custom-text {
+  width:100%;
+  border-radius: 5px;
+  padding: 7px;
+  padding-left: 10px;
+  border: 0.5px solid lightgrey;
+}
+.button-post {
+  float:left;
+  font-size: 15px;
+  border: 1px solid #7EA6E0;
+  border-radius: 5px;
+  padding: 7px;
+  background-color: #FFFFFF;
+  color: #7EA6E0;
+}
+.button-post:hover {
+  border: 1px solid #7EA6E0;
+  background-color: #888888;
+  color: #FFFFFF;
+}

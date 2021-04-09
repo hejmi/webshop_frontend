@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import CustomersService from "../services/CustomersService";
 import {isAuthenticated} from "../repositories/LoginAndAuthentication";
-import {Link} from "react-router-dom";
 
 export class Customer extends Component {
     constructor(props) {

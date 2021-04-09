@@ -1,46 +1,118 @@
 import React, {Component} from "react";
-import * as Icon from "react-bootstrap-icons";
 import {isAdminAuthenticated} from "../repositories/LoginAndAuthentication";
+import ProductsService from "../services/ProductsService";
+import TwitterService from "../services/TwitterService";
 
 export class Administration extends Component {
-constructor() {
-    super();
+constructor(props) {
+    super(props);
+    this.state = {
+        products: [],
+        twitterhash: [],
+        list: [],
+        productidToPost: "",
+        hashtagToPost: "",
+        customtextToPost: "",
+        message: ""
+    }
 }
+
+    componentDidMount() {
+        this.retriveProducts();
+        this.retrieveTwitterHashtags();
+    }
+
+    retriveProducts() {
+        ProductsService.getAll()
+            .then(response => {
+                this.setState({
+                    products: response.data
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    retrieveTwitterHashtags() {
+        TwitterService.getAll()
+            .then(response => {
+                this.setState( {
+                    twitterhash: response.data
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+    handleProductChange(e) {
+        this.setState({productidToPost: e.target.value})
+    }
+    handleHashtagChange(e) {
+        this.setState({hashtagToPost: e.target.value})
+    }
+    handleCustomPostTextChange(e) {
+        this.setState({customtextToPost: e.target.value})
+    }
+
+    postToTwitter(e) {
+        e.preventDefault()
+        let productid = this.state.productidToPost
+        let hashtag = this.state.hashtagToPost
+        let customtext = this.state.customtextToPost
+        if (productid === "") productid = 1
+        if (hashtag === "") hashtag = 1
+        let productLink = "http://thegeeksqueek.com/product/" + productid
+        let jsonified = {"message":customtext, "url":productLink, "hashtag":hashtag}
+        TwitterService.post2Twitter(jsonified)
+            .then(r => {
+                this.setState( {
+                    message: r.data
+                })
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
     render() {
+        const { products, message } = this.state;
+        const hashlist = this.state.twitterhash.map((hashtag, index) =>
+            <option key={index} value={hashtag.hashtagid}>{hashtag.hashtagname}</option>
+        )
         return (
             <div className="footer">
                 {isAdminAuthenticated() === "Admin" ? (
                 <div className="container">
-                    <div className="footer-block">
-                        <div className="row">
-                            <div className="col-1"></div>
-                            <div className="col-3">
-                                <h6>feowiefwouifouwbgrw</h6><hr />
-                                <span className="footer-social-icon"><Icon.SuitHeartFill /></span> <a href="/popularproducts" className="footer-link">Most Popular</a><br/>
-                                <span className="footer-social-icon"><Icon.Star /></span> <a href="/bestratedproducts" className="footer-link">Best Rated</a><br/>
-                                <span className="footer-social-icon"><Icon.Percent /></span> <a href="/sale" className="footer-link">On Sale</a>
-                            </div>
-                            <div className="col-3">
-                                <h6>gersgrwerwgrweg Service</h6><hr />
-                                <span className="footer-social-icon"><Icon.Truck /></span> <a href="/shippinginfo" className="footer-link">Shipping</a><br/>
-                                <span className="footer-social-icon"><Icon.Receipt /></span> <a href="/orderrules" className="footer-link">Order Rules</a><br/>
-                                <span className="footer-social-icon"><Icon.QuestionCircleFill /></span> <a href="/faq" className="footer-link">Frequently Asked Questions</a><br/>
-                                <span className="footer-social-icon"><Icon.InfoCircleFill /></span> <a href="/contact" className="footer-link">Contact Us</a>
-                            </div>
-                            <div className="col-3">
-                                <h6>gregwegrweregreg with us</h6><hr />
-                                <span className="footer-social-icon"><Icon.Facebook /> </span> <a href="https://facebook.com/thegeeksqueek" className="footer-link">facebook.com/thegeeksqueek</a><br/>
-                                <span className="footer-social-icon"><Icon.Instagram /> </span> <a href="https://intagr.am/thegeeksqueek" className="footer-link">instagr.am/thegeeksqueek</a><br/>
-                                <span className="footer-social-icon"> <Icon.Twitter /> </span> <a href="https://twitter.me/thegeeksqueek" className="footer-link">twitter.me/thegeeksqueek</a><br/>
-                                <span className="footer-social-icon"><Icon.Envelope /> </span> <a href="mailto:thegeeksqueek@gmail.com" className="footer-link">thegeeksqueek@gmail.com</a>
-                            </div>
-                            <div className="col-auto float-right"><p align="center"><img src="/images/logoonly.png" alt="LogoText" width="55" /><br/><img src="/images/logotextonly.png" alt="LogoText" width="110" /></p></div>
-                        </div>
+                    <div className="row">
+                        <h3><br/>Admin Backend</h3>
                     </div>
-                    <div className="footer-copyright">
-                        &copy; &reg; 2021 Copyright. All rights reserved.
+                    <form onSubmit={(e) => {this.postToTwitter(e)}}>
+                    <div className="container">
+                        <h5>Post to Twitter</h5>
+                        <p>Please chose product, matching hashtags and enter a custom text to post to Twitter.</p>
+                        {message ? (<p> Posted to Twitter: <b> {message} </b></p>) : (<p> </p> )}
+                        <select name="product" id="product" className="custom-select"  onChange={(e) => this.handleProductChange(e)}>
+                            {products && products.map((product, index) => (
+                                <option key={index} value={product.id}>
+                                    {product.product_name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                </div> ) : ( <div className="container"> <h2>Not Authenticated!</h2></div> )}
+                    <div className="container">
+                        <select name="hashtag" id="hashtag" className="custom-select"  onChange={(e) => this.handleHashtagChange(e)}>
+                            {hashlist}
+                        </select>
+                    </div>
+                    <div className="container">
+                        <input type="text" className="custom-text" name="customPostText" placeholder="Enter your post message here"  onChange={(e) => this.handleCustomPostTextChange(e)}/>
+                    </div>
+                    <div className="container">
+                        <input type="submit" value="Post it" className="button-post"/><br/><br/>
+                    </div>
+                </form>
+                </div> ) : ( <div className="container"> <h2><br/>Not Authenticated!</h2></div> )}
             </div>
         )
     }
