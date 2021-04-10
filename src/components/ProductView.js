@@ -79,21 +79,21 @@ export default class ProductView extends Component {
                         currentProduct.map((product, index) => (
                             <div className="row products" key={index}>
                                 <div className="col">
-                                {product.products.has_image === true ? (
-                                    <img alt={product.products.product_name} height="600" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
-                                ):(<img alt={product.products.product_name} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                {product.product.hasImage === true ? (
+                                    <img alt={product.product.productName} height="600" src={`/images/products/product-${product.product.id}.jpg`} className="product-image"/>
+                                ):(<img alt={product.product.productName} height="600" src="/images/products/imageiscomingsoon.jpg"/>)}
                                 </div>
                                 <div className="col">
 
-                                    <div className="currentproduct-name">{product.products.product_name}</div>
-                                    <div className="currentproduct-price">${product.products.product_price}<br/><br/></div>
+                                    <div className="currentproduct-name">{product.product.productName}</div>
+                                    <div className="currentproduct-price">${product.product.productPrice}<br/><br/></div>
                                             <div className="currentproduct-attributes">
-                                                {product.attributeOptions.id !== 0 ? (
-                                                    <span className="description">Please Choose {product.attributeOptions.attribute.attribute_name}: <br/>
-                                                        <select defaultValue={1} name={product.attributeOptions.attribute.attribute_name} onChange={(e) => this.handleSelectChange(e)} >
-                                                         <option disabled value={1}>{product.attributeOptions.attribute.attribute_name}</option>
+                                                {product.attributeOption.id !== 0 ? (
+                                                    <span className="description">Please Choose {product.attributeOption.attribute.attributeName}: <br/>
+                                                        <select defaultValue={1} name={product.attributeOption.attribute.attributeName} onChange={(e) => this.handleSelectChange(e)} >
+                                                         <option disabled value={1}>{product.attributeOption.attribute.attributeName}</option>
                                                         {attributes.map((attop, key) => (
-                                                            <option key={key} value={attop.id}>{attop.attributeOptions.attribute_option_name}</option>
+                                                            <option key={key} value={attop.id}>{attop.attributeOption.attributeOptionName}</option>
                                                         ))}
                                                         </select>
                                                         <br/><br/></span> ) : (
@@ -102,7 +102,7 @@ export default class ProductView extends Component {
 
                                             </div>
 
-                                    <div className="currentproduct-desc">{product.products.full_desc}</div>
+                                    <div className="currentproduct-desc">{product.product.fullDesc}</div>
                                     <div>{product.stock === 1 ? ( <span><i><b><font color='#8b0000'>This is the last item in stock!</font></b></i><br/></span> ):( <span> </span> )}
                                        <button id="submitButton" onClick={(e) => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
                                         <br/><br/><h5><font color='#8b0000'>{warningText}</font></h5><br/>

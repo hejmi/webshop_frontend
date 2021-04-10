@@ -65,34 +65,34 @@ export default class FeaturedProducts extends Component {
                         featuredproducts.map((featuredproduct, index) => (
                             <div className="product-container" key={index}>
                             <div className="featured-product col" >
-                                {featuredproduct.attributeOptions.attribute.id !== 0  ? (
-                                    <Link to={`/product/${featuredproduct.products.id}`}>
-                                        {featuredproduct.products.has_image === true ? (
-                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.products.id}.jpg`} className="product-image"/>
-                                        ):(<img alt={featuredproduct.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                {featuredproduct.attributeOption.attribute.id !== 0  ? (
+                                    <Link to={`/product/${featuredproduct.product.id}`}>
+                                        {featuredproduct.product.hasImage === true ? (
+                                            <img alt={featuredproduct.product.productName} height="301" src={`/images/products/product-${featuredproduct.product.id}.jpg`} className="product-image"/>
+                                        ):(<img alt={featuredproduct.product.productName} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                 ) : (
-                                    <Link to={`/product/${featuredproduct.products.id}`}>
-                                        {featuredproduct.products.has_image === true ? (
-                                            <img alt={featuredproduct.products.product_name} height="301" src={`/images/products/product-${featuredproduct.products.id}.jpg`} className="product-image"/>
-                                        ):(<img alt={featuredproduct.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    <Link to={`/product/${featuredproduct.product.id}`}>
+                                        {featuredproduct.product.hasImage === true ? (
+                                            <img alt={featuredproduct.product.productName} height="301" src={`/images/products/product-${featuredproduct.product.id}.jpg`} className="product-image"/>
+                                        ):(<img alt={featuredproduct.product.productName} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                 )}
                                 <div className="row">
-                                    <div className="product-name">{featuredproduct.products.product_name}</div><div className="price-tag"><b>${featuredproduct.products.product_price}</b></div>
+                                    <div className="product-name">{featuredproduct.product.productName}</div><div className="price-tag"><b>${featuredproduct.product.productPrice}</b></div>
                                 </div>
                                 <div className="row">
-                                    <div className="product-description">{featuredproduct.products.short_desc}</div>
+                                    <div className="product-description">{featuredproduct.product.shortDesc}</div>
                                 </div>
                             </div><br/>
-                                    {featuredproduct.attributeOptions.attribute.id !== 0  ? (
+                                    {featuredproduct.attributeOption.attribute.id !== 0  ? (
                                         <div className="product-info">
-                                                        <Link to={`/product/${featuredproduct.products.id}`}><button className="button-moreinfo">More info</button></Link>
-                                                        <Link to={`/product/${featuredproduct.products.id}`}><button className="button-addtocart">See Options</button></Link>
+                                                        <Link to={`/product/${featuredproduct.product.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${featuredproduct.product.id}`}><button className="button-addtocart">See Options</button></Link>
                                         </div>
                                     ) : (
                                         <div className="product-info">
-                                                        <Link to={`/product/${featuredproduct.products.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${featuredproduct.product.id}`}><button className="button-moreinfo">More info</button></Link>
                                                         <button onClick={() => this.addToCart(featuredproduct) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                         </div>
                                     )}

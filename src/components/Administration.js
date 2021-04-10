@@ -78,7 +78,7 @@ constructor(props) {
     render() {
         const { products, message } = this.state;
         const hashlist = this.state.twitterhash.map((hashtag, index) =>
-            <option key={index} value={hashtag.hashtagid}>{hashtag.hashtagname}</option>
+            <option key={index} value={hashtag.hashtagId}>{hashtag.hashtagName}</option>
         )
         return (
             <div className="footer">
@@ -90,12 +90,12 @@ constructor(props) {
                     <form onSubmit={(e) => {this.postToTwitter(e)}}>
                     <div className="container">
                         <h5>Post to Twitter</h5>
-                        <p>Please chose product, matching hashtags and enter a custom text to post to Twitter.</p>
+                        <p>Please chose product, matching hashtag and enter a custom text to post to Twitter.</p>
                         {message ? (<p> Posted to Twitter: <b> {message} </b></p>) : (<p> </p> )}
                         <select name="product" id="product" className="custom-select"  onChange={(e) => this.handleProductChange(e)}>
                             {products && products.map((product, index) => (
                                 <option key={index} value={product.id}>
-                                    {product.product_name}
+                                    {product.productName}
                                 </option>
                             ))}
                         </select>
@@ -112,7 +112,7 @@ constructor(props) {
                         <input type="submit" value="Post it" className="button-post"/><br/><br/>
                     </div>
                 </form>
-                </div> ) : ( <div className="container"> <h2><br/>Not Authenticated!</h2></div> )}
+                </div> ) : ( <div className="container"> <h2><br/>Not Authenticated!</h2><h5>You must login as an administrator to access this page</h5></div> )}
             </div>
         )
     }

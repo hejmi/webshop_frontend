@@ -36,16 +36,16 @@ export default class Cart extends React.Component {
                         products: this.state.products.concat([response.data]),
                         cartContents: this.state.cartContents.concat({
                             'id': response.data[0].id,
-                            'image_id' : response.data[0].products.id,
-                            'product_name': response.data[0].products.product_name,
-                            'product_price': response.data[0].products.product_price,
-                            'short_desc' : response.data[0].products.short_desc,
+                            'image_id' : response.data[0].product.id,
+                            'product_name': response.data[0].product.productName,
+                            'product_price': response.data[0].product.productPrice,
+                            'short_desc' : response.data[0].product.shortDesc,
                             'qty' : currqty,
                             'sku' : response.data[0].sku,
-                            'has_image' : response.data[0].products.has_image,
-                            'attrOption' : response.data[0].attributeOptions.attribute.attribute_name + " : " + response.data[0].attributeOptions.attribute_option_name
+                            'has_image' : response.data[0].product.hasImage,
+                            'attrOption' : response.data[0].attributeOption.attribute.attributeName + " : " + response.data[0].attributeOption.attributeOptionName
                         }),
-                        totals: this.state.totals + (response.data[0].products.product_price * currqty)
+                        totals: this.state.totals + (response.data[0].product.productPrice * currqty)
                     })
                 })
                 .catch(e => {

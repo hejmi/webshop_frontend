@@ -50,7 +50,7 @@ export default class ProductList extends Component {
             BrandsService.get(id[2])
                 .then(response => {
                     this.setState({
-                        topMessage: 'Showing all products from "' + response.data[0].brand_name + '"'
+                        topMessage: 'Showing all products from "' + response.data[0].brandName + '"'
                     })
                 })
         } else if (id[1] === "products") {
@@ -81,7 +81,7 @@ export default class ProductList extends Component {
                 CategoriesService.get(id[2])
                     .then(response => {
                         this.setState({
-                            topMessage: 'Showing all products in "' + response.data[0].category_name + '" category'
+                            topMessage: 'Showing all products in "' + response.data[0].categoryName + '" category'
                         })
                     })
         }
@@ -130,35 +130,35 @@ export default class ProductList extends Component {
                             {products &&
                             products.map((product, index) => (
                                 <div className="col-3 products" key={index}>
-                                    {product.attributeOptions.attribute.id !== 0  ? (
-                                    <Link to={`/product/${product.products.id}`}>
-                                        {product.products.has_image === true ? (
-                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
-                                        ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    {product.attributeOption.attribute.id !== 0  ? (
+                                    <Link to={`/product/${product.product.id}`}>
+                                        {product.product.hasImage === true ? (
+                                            <img alt={product.product.productName} height="301" src={`/images/products/product-${product.product.id}.jpg`} className="product-image"/>
+                                        ):(<img alt={product.product.productName} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                         ) : (
-                                    <Link to={`/product/${product.products.id}`}>
-                                        {product.products.has_image === true ? (
-                                            <img alt={product.products.product_name} height="301" src={`/images/products/product-${product.products.id}.jpg`} className="product-image"/>
-                                        ):(<img alt={product.products.product_name} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
+                                    <Link to={`/product/${product.product.id}`}>
+                                        {product.product.hasImage === true ? (
+                                            <img alt={product.product.productName} height="301" src={`/images/products/product-${product.product.id}.jpg`} className="product-image"/>
+                                        ):(<img alt={product.product.productName} height="301" src="/images/products/imageiscomingsoon.jpg"/>)}
                                     </Link>
                                         )}
                                     <div>
                                         <div className="product-info">
-                                            <span className="product-name">{product.products.product_name}</span>
-                                            <span className="product-price">${product.products.product_price}</span>
+                                            <span className="product-name">{product.product.productName}</span>
+                                            <span className="product-price">${product.product.productPrice}</span>
                                         </div>
-                                            <div className="description">{product.products.short_desc}</div>
+                                            <div className="description">{product.product.shortDesc}</div>
                                         </div>
                                         <div className="product-info">
-                                            {product.attributeOptions.attribute.id !== 0  ? (
+                                            {product.attributeOption.attribute.id !== 0  ? (
                                                     <span>
-                                                        <Link to={`/product/${product.products.id}`}><button className="button-moreinfo">More info</button></Link>
-                                                        <Link to={`/product/${product.products.id}`}><button className="button-addtocart">See Options</button></Link>
+                                                        <Link to={`/product/${product.product.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${product.product.id}`}><button className="button-addtocart">See Options</button></Link>
                                                     </span>
                                                 ) : (
                                                     <span>
-                                                        <Link to={`/product/${product.products.id}`}><button className="button-moreinfo">More info</button></Link>
+                                                        <Link to={`/product/${product.product.id}`}><button className="button-moreinfo">More info</button></Link>
                                                         <button onClick={() => this.addToCart(product) & window.location.reload(true)} className="button-addtocart">Add to cart</button>
                                                     </span>
                                             )}
@@ -174,19 +174,19 @@ export default class ProductList extends Component {
                                         <label>
                                             <strong>Name:</strong>
                                         </label>{" "}
-                                        {currentProduct.product_name}
+                                        {currentProduct.productName}
                                     </div>
                                     <div>
                                         <label>
                                             <strong>Full Description:</strong>
                                         </label>{" "}
-                                        {parse(currentProduct.full_desc)}
+                                        {parse(currentProduct.fullDesc)}
                                     </div>
                                     <div>
                                         <label>
                                             <strong>Price:</strong>
                                         </label>{" "}
-                                        {currentProduct.product_price}
+                                        {currentProduct.productPrice}
                                     </div>
 
                                 </div>

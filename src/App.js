@@ -95,6 +95,7 @@ class App extends Component {
         localStorage.removeItem('x-access-token-expiration')
         localStorage.removeItem('x-access-token')
         localStorage.removeItem('login-user')
+        localStorage.removeItem('role')
     }
 
     render() {
@@ -117,7 +118,7 @@ class App extends Component {
                                         brands.map((brand, index) => (
                                             <div className="col-3" key={brand.id}>
                                                 <br/><Link to={`/brands/${brand.id}`}><img
-                                                src={`/images/brands/${brand.brand_logo}`} height="80" width="80"
+                                                src={`/images/brands/${brand.brandLogo}`} height="80" width="80"
                                                 alt="brand logo" className="brand-logo"/><br/><br/></Link>
                                             </div>
                                         ))}
@@ -130,17 +131,17 @@ class App extends Component {
                                     {categories &&
                                     categories.map((category, index) => (
                                         <div key={category.id}>
-                                            {category.parent_category_id === 0 ? (
-                                                <NavDropdown title={category.category_name}
+                                            {category.parentCategoryId === 0 ? (
+                                                <NavDropdown title={category.categoryName}
                                                              className="navbar-dropdown"
                                                              href={`/categories/${category.id}`}>
                                                     <div className="submenu">
                                                         {categories &&
                                                         categories.map((subcategory, indx) => (
                                                             <div key={subcategory.id}>
-                                                                {subcategory.parent_category_id === category.id ? (
+                                                                {subcategory.parentCategoryId === category.id ? (
                                                                     <div className="navbar-dropdown-sub"><Link
-                                                                        to={`/categories/${subcategory.id}`}>{subcategory.category_name}</Link>
+                                                                        to={`/categories/${subcategory.id}`}>{subcategory.categoryName}</Link>
                                                                     </div>) : (null)}
                                                             </div>
                                                         ))}
