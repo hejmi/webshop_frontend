@@ -6,6 +6,7 @@ import "./App.css"
 import Footer from "./components/Footer";
 import FeaturedProducts from "./components/FeaturedProducts";
 import { withRouter } from "react-router-dom";
+import ChatBot from 'react-simple-chatbot';
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
@@ -35,6 +36,8 @@ class App extends Component {
             cartCount: null
         };
     }
+
+
 
     componentDidMount() {
         this.retriveCategories();
@@ -100,6 +103,18 @@ class App extends Component {
 
     render() {
         const {categories, brands, keyword, cartCount} = this.state;
+        const steps = [
+            {
+                id: '0',
+                message: 'Welcome to react chatbot!',
+                trigger: '1',
+            },
+            {
+                id: '1',
+                message: 'Bye!',
+                end: true,
+            },
+        ];
         return (
             <div className="container">
                 <div><br/></div>
@@ -217,6 +232,8 @@ class App extends Component {
                         </div>
                     </div>
                 </nav>
+
+
                 <Switch>
                     <Route path="/products/:id" component={ProductList}/>
                     <Route path="/brands/:id" component={ProductList}/>
@@ -231,6 +248,7 @@ class App extends Component {
                     <Route path="/administration" component={Administration} />
                 </Switch>
                 <Footer></Footer>
+                <ChatBot steps={steps} />
             </div>
         );
     }
