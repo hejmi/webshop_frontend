@@ -6,7 +6,6 @@ import "./App.css"
 import Footer from "./components/Footer";
 import FeaturedProducts from "./components/FeaturedProducts";
 import { withRouter } from "react-router-dom";
-import ChatBot from 'react-simple-chatbot';
 
 import AddProduct from './components/AddProduct'
 import Cart from './components/Cart'
@@ -16,7 +15,7 @@ import CategoriesService from "./services/CategoriesService";
 import {Dropdown, NavDropdown} from "react-bootstrap";
 import BrandsService from "./services/BrandsService";
 import ProductView from "./components/ProductView";
-import {isAdminAuthenticated, isAuthenticated, login} from "./repositories/LoginAndAuthentication";
+import {isAdminAuthenticated, isAuthenticated} from "./repositories/LoginAndAuthentication";
 import Customer from "./components/Customer";
 import {Administration} from "./components/Administration";
 import Contact from "./components/Contact";
@@ -96,14 +95,11 @@ class App extends Component {
     }
 
     logout() {
-        localStorage.removeItem('x-access-token-expiration')
-        localStorage.removeItem('x-access-token')
-        localStorage.removeItem('login-user')
-        localStorage.removeItem('role')
+        sessionStorage.clear()
     }
 
     render() {
-        const {categories, brands, keyword, cartCount} = this.state;
+        const {categories, brands} = this.state;
         return (
             <div className="container">
                 <div><br/></div>

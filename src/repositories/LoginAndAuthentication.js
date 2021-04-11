@@ -3,14 +3,13 @@ import sha256 from "sha256";
 
 export function login (data) {
 
-    localStorage.removeItem('loginfailed');
     let redirectpath = ''
     http.post('/accounts/auth',
         { username: data.username, password: sha256(data.password) })
         .then(response => {
             if (response.data === true) {
-            localStorage.setItem('x-access-token', sha256(response.data))
-            localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000)
+            sessionStorage.setItem('x-access-token', sha256(response.data))
+            sessionStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000)
             }
         })
         http.post('/accounts/auth/userdata',
@@ -22,24 +21,26 @@ export function login (data) {
                     } else {
                         redirectpath = '/myprofile'
                     }
-                    localStorage.setItem('login-user', response.data[0].id)
-                    localStorage.setItem('role', sha256(response.data[0].role))
+                    sessionStorage.setItem('login-user', response.data[0].id)
+                    sessionStorage.setItem('role', sha256(response.data[0].role))
                     window.location = redirectpath
                 } catch (error) {
-                  localStorage.setItem('loginfailed', 'true');
                 }
             })
        //.catch(err => Promise.reject('Authentication Failed!'));
 }
 
 export function isAuthenticated(){
-    return localStorage.getItem('x-access-token') && localStorage.getItem('x-access-token-expiration') > Date.now()
+    if (sessionStorage.getItem('x-access-token-expiration') < Date.now()) {
+        sessionStorage.clear()
+    }
+    return sessionStorage.getItem('x-access-token') && sessionStorage.getItem('x-access-token-expiration') > Date.now()
 }
 export function isAdminAuthenticated() {
-    if (!localStorage.getItem('role')) {
+    if (!sessionStorage.getItem('role')) {
         return null
     }
-    if (localStorage.getItem('role') === 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f') {
+    if (sessionStorage.getItem('role') === 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f') {
         return 'Admin'
     } else {
         return 'User'

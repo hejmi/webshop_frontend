@@ -14,7 +14,7 @@ export class Customer extends Component {
     }
 
     getCustomerData() {
-        CustomersService.get(localStorage.getItem('login-user'))
+        CustomersService.get(sessionStorage.getItem('login-user'))
             .then(response => {
                 this.setState({
                     userData: response.data
