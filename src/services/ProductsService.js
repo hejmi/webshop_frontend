@@ -6,21 +6,21 @@ class ProductsService {
     }
 
     getAllFromCat(id) {
-        return http.get(`/categories/${id}`);
+        return http.get(`/categories/id?id=${id}`);
     }
 
     getAllFromBrand(id) {
-        return http.get(`/brands/${id}`);
+        return http.get(`/brands/id?id=${id}`);
     }
     getForCart(id) {
-        return http.get(`/sku/id/${id}`);
+        return http.get(`/sku/id?id=${id}`);
     }
     get(id) {
-        return http.get(`/products/${id}`);
+        return http.get(`/products/product?id=${id}`);
     }
 
     getAttributesFor(id) {
-        return http.get(`/attributes/product/${id}`);
+        return http.get(`/attributes/product?id=${id}`);
     }
 
     create(data) {
@@ -28,7 +28,7 @@ class ProductsService {
     }
 
     update(id, data) {
-        return http.put(`/products/${id}`, data);
+        return http.put(`/products?id=${id}`, data);
     }
 
     delete(id) {

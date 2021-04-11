@@ -81,7 +81,7 @@ constructor(props) {
             <option key={index} value={hashtag.hashtagId}>{hashtag.hashtagName}</option>
         )
         return (
-            <div className="footer">
+            <div className="administration">
                 {isAdminAuthenticated() === "Admin" ? (
                 <div className="container">
                     <div className="row">

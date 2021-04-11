@@ -5,7 +5,7 @@ class BrandsService {
         return http.get("/brands");
     }
     get(id) {
-        return http.get(`/brands/brand/${id}`);
+        return http.get(`/brands/brand?id=${id}`);
     }
 }
 export default new BrandsService();

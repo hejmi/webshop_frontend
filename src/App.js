@@ -19,6 +19,7 @@ import ProductView from "./components/ProductView";
 import {isAdminAuthenticated, isAuthenticated, login} from "./repositories/LoginAndAuthentication";
 import Customer from "./components/Customer";
 import {Administration} from "./components/Administration";
+import Contact from "./components/Contact";
 
 
 class App extends Component {
@@ -103,18 +104,6 @@ class App extends Component {
 
     render() {
         const {categories, brands, keyword, cartCount} = this.state;
-        const steps = [
-            {
-                id: '0',
-                message: 'Welcome to react chatbot!',
-                trigger: '1',
-            },
-            {
-                id: '1',
-                message: 'Bye!',
-                end: true,
-            },
-        ];
         return (
             <div className="container">
                 <div><br/></div>
@@ -237,7 +226,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/products/:id" component={ProductList}/>
                     <Route path="/brands/:id" component={ProductList}/>
-                    <Route path="/categories/:id" component={ProductList}/>
+                    <Route path="/categories" component={ProductList}/>
                     <Route exact path="/" component={FeaturedProducts}/>
                     <Route path="/login" component={Login}/>
                     <Route exact path="/cart" component={Cart}/>
@@ -246,9 +235,10 @@ class App extends Component {
                     <Route path="/myprofile" component={Customer}/>
                     <Route path="/products" component={ProductList}/>
                     <Route path="/administration" component={Administration} />
+                    <Route path="/contact" component={Contact} />
                 </Switch>
                 <Footer></Footer>
-                <ChatBot steps={steps} />
+
             </div>
         );
     }

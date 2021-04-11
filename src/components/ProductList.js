@@ -86,7 +86,6 @@ export default class ProductList extends Component {
                     })
         }
 
-
     }
 
     refreshList() {
