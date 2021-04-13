@@ -423,7 +423,6 @@ button:hover{
   border: 0.5px solid lightgrey;
 }
 .button-post {
-  float:left;
   font-size: 15px;
   border: 1px solid #7EA6E0;
   border-radius: 5px;

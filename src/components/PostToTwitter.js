@@ -4,10 +4,8 @@ import ProductsService from "../services/ProductsService";
 import TwitterService from "../services/TwitterService";
 import {Switch, Route, Link} from "react-router-dom";
 import AddProduct from "./AddProduct";
-import PostToTwitter from "./PostToTwitter";
-import EditProduct from "./EditProduct";
 
-export class Administration extends Component {
+export class PostToTwitter extends Component {
 constructor(props) {
     super(props);
     this.state = {
@@ -85,28 +83,34 @@ constructor(props) {
             <option key={index} value={hashtag.hashtagId}>{hashtag.hashtagName}</option>
         )
         return (
-            <div className="administration">
-                {isAdminAuthenticated() === "Admin" ? (
                 <div className="container">
-                    <div className="row">
-                        <h3><br/>Admin Backend</h3>
-                    </div>
-                    <div className="container">
-                        <p>Welcome to the backend system!</p>
-                        <li><Link to="/administration/addproduct">Add new product to shop</Link></li>
-                        <li><Link to="/administration/editproduct">Edit existing product in shop</Link></li>
-                        <li><Link to="/administration/posttotwitter">Post to Twitter</Link></li>
-                    </div>
-
-                    <Switch>
-                        <Route path="/administration/addproduct" component={AddProduct} />
-                        <Route path="/administration/editproduct" component={EditProduct} />
-                        <Route path="/administration/posttotwitter" component={PostToTwitter} />
-                    </Switch>
-
-                </div> ) : ( <div className="container"> <h2><br/>Not Authenticated!</h2><h5>You must login as an administrator to access this page</h5></div> )}
-            </div>
+                    <form onSubmit={(e) => {this.postToTwitter(e)}}>
+                        <div className="container">
+                            <h5>Post to Twitter</h5>
+                            <p>Please chose product, matching hashtag and enter a custom text to post to Twitter.</p>
+                            {message ? (<p> Posted to Twitter: <b> {message} </b></p>) : (<p> </p> )}
+                            <select name="product" id="product" className="custom-select"  onChange={(e) => this.handleProductChange(e)}>
+                                {products && products.map((product, index) => (
+                                    <option key={index} value={product.id}>
+                                        {product.productName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="container">
+                            <select name="hashtag" id="hashtag" className="custom-select"  onChange={(e) => this.handleHashtagChange(e)}>
+                                {hashlist}
+                            </select>
+                        </div>
+                        <div className="container">
+                            <input type="text" className="custom-text" name="customPostText" placeholder="Enter your post message here"  onChange={(e) => this.handleCustomPostTextChange(e)}/>
+                        </div>
+                        <div className="container">
+                            <input type="submit" value="Post it" className="button-post"/><br/><br/>
+                        </div>
+                    </form>
+                </div>
         )
     }
-}
-export default Administration
+};
+export default PostToTwitter

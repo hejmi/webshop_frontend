@@ -36,9 +36,6 @@ class App extends Component {
             cartCount: null
         };
     }
-
-
-
     componentDidMount() {
         this.retriveCategories();
         this.retriveBrands();
