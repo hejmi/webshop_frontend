@@ -25,7 +25,7 @@ export default class ProductList extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.match.params.id !== this.props.match.params.id){
+        if(prevProps.location.pathname !== this.props.location.pathname){
            this.retriveProducts()
         }
         if(prevProps.location.search !== this.props.location.search) {
