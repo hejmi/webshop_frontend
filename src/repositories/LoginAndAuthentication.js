@@ -9,7 +9,7 @@ export function login (data) {
         .then(response => {
             if (response.data === true) {
             sessionStorage.setItem('x-access-token', sha256(response.data))
-            sessionStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000)
+            sessionStorage.setItem('x-access-token-expiration', Date.now() + 20 * 60 * 1000)
             }
         })
         http.post('/accounts/auth/userdata',
@@ -33,8 +33,10 @@ export function login (data) {
 export function isAuthenticated(){
     if (sessionStorage.getItem('x-access-token-expiration') < Date.now()) {
         sessionStorage.clear()
+    } else {
+        sessionStorage.setItem('x-access-token-expiration', Date.now() + 20 * 60 * 1000)
+        return sessionStorage.getItem('x-access-token') && sessionStorage.getItem('x-access-token-expiration') > Date.now()
     }
-    return sessionStorage.getItem('x-access-token') && sessionStorage.getItem('x-access-token-expiration') > Date.now()
 }
 export function isAdminAuthenticated() {
     if (!sessionStorage.getItem('role')) {

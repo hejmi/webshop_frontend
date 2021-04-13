@@ -6,6 +6,7 @@ import {Switch, Route, Link} from "react-router-dom";
 import AddProduct from "./AddProduct";
 import PostToTwitter from "./PostToTwitter";
 import EditProduct from "./EditProduct";
+import Countdown from 'react-countdown';
 
 export class Administration extends Component {
 constructor(props) {
@@ -22,6 +23,7 @@ constructor(props) {
 }
 
     componentDidMount() {
+
         this.retriveProducts();
         this.retrieveTwitterHashtags();
     }
@@ -48,12 +50,6 @@ constructor(props) {
             .catch(e => {
                 console.log(e);
             })
-    }
-    handleProductChange(e) {
-        this.setState({productidToPost: e.target.value})
-    }
-    handleHashtagChange(e) {
-        this.setState({hashtagToPost: e.target.value})
     }
     handleCustomPostTextChange(e) {
         this.setState({customtextToPost: e.target.value})
@@ -92,7 +88,7 @@ constructor(props) {
                         <h3><br/>Admin Backend</h3>
                     </div>
                     <div className="container">
-                        <p>Welcome to the backend system!</p>
+                        <p>Welcome to the backend system! <span className="float-right"> Session time left: <Countdown date={Date.now() + 20 * 60 * 1000} /></span></p>
                         <li><Link to="/administration/addproduct">Add new product to shop</Link></li>
                         <li><Link to="/administration/editproduct">Edit existing product in shop</Link></li>
                         <li><Link to="/administration/posttotwitter">Post to Twitter</Link></li>
