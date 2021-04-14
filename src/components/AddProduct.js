@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import Administration from "./Administration";
 import CategoriesService from "../services/CategoriesService";
-import {Link} from "react-router-dom";
-import {NavDropdown} from "react-bootstrap";
 
 class AddProduct extends Component {
     constructor(props) {
@@ -35,7 +32,7 @@ class AddProduct extends Component {
                 <div className="container">
                     <h5>Add new Product</h5>
                     <div className="container">
-                        <select defaultValue={0} name="category"><option value="0" disabled>Chose Category</option>
+                        <select className="custom-select" defaultValue={0} name="category"><option value="0" disabled>Chose Category</option>
                         {categories &&
                         categories.map((category, index) => (
                                 category.parentCategoryId === 0 ? (

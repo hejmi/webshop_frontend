@@ -8,7 +8,8 @@ export default class ProductView extends Component {
             currentProduct: [],
             quantity: 1,
             attributes: [],
-            optionid: null
+            optionid: null,
+            topMessage: 'Error 404 - The product you\'re looking for doesn\'t exist...'
         };
     }
 
@@ -65,15 +66,14 @@ export default class ProductView extends Component {
 
     handleSelectChange (e) {
         this.setState({optionid: e.target.value})
-
-        console.log(e.target.value)
     }
 
     render() {
         const { currentProduct, attributes, warningText } = this.state;
         return (
             <div className="row col-12">
-                <div className="container"><br/>
+                <div className="container">
+                    {currentProduct.length < 1 ? ( <div className="container"><p><img src="/images/sad_pig.png" width="50"/></p><h5> {this.state.topMessage} </h5></div> ):( null ) }<br/><br/>
                     <div className="row">
                         {currentProduct &&
                         currentProduct.map((product, index) => (

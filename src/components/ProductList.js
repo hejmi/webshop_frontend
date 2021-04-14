@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ProductsService from "../services/ProductsService";
-import parse from 'html-react-parser';
 import CategoriesService from "../services/CategoriesService";
 import BrandsService from "../services/BrandsService";
 import {Link} from "react-router-dom";
@@ -12,7 +11,6 @@ export default class ProductList extends Component {
 
         this.state = {
             products: [],
-            currentProduct: null,
             currentIndex: -1,
             quantity: 1,
             searchTitle: "",
@@ -42,15 +40,18 @@ export default class ProductList extends Component {
                     this.setState({
                         products: response.data
                     });
-                    //console.log(response.data);
                 })
                 .catch(e => {
-                    console.log(e);
                 })
             BrandsService.get(id[2])
                 .then(response => {
                     this.setState({
                         topMessage: 'Showing all products from "' + response.data[0].brandName + '"'
+                    })
+                })
+                .catch(e => {
+                    this.setState({
+                        topMessage: 'Error 404 - The page you\'re looking for doesn\'t exist...'
                     })
                 })
         } else if (id[1] === "products") {
@@ -59,10 +60,8 @@ export default class ProductList extends Component {
                     this.setState({
                         products: response.data
                     });
-                    //response.data.forEach(d => console.log(d))
                 })
                 .catch(e => {
-                    console.log(e);
                 })
             this.setState({
                 topMessage: 'Search Results for ' + keyword[1]
@@ -73,15 +72,18 @@ export default class ProductList extends Component {
                         this.setState({
                             products: response.data
                         });
-                        //console.log(response.data);
                     })
                     .catch(e => {
-                        console.log(e);
                     })
                 CategoriesService.get(id[2])
                     .then(response => {
                         this.setState({
                             topMessage: 'Showing all products in "' + response.data[0].categoryName + '" category'
+                        })
+                    })
+                    .catch(e => {
+                        this.setState({
+                            topMessage: 'Error 404 - The page you\'re looking for doesn\'t exist...'
                         })
                     })
         }
@@ -120,7 +122,7 @@ export default class ProductList extends Component {
     }
 
     render() {
-        const { products, currentProduct } = this.state;
+        const { products } = this.state;
         return (
             <div className="row col-12">
                         <div className="container"><br/>
@@ -164,32 +166,8 @@ export default class ProductList extends Component {
                                         </div>
                                 </div>
                             ))}
-                            </div>
-                            {currentProduct ? (
-                                <div>
-                                    <br/>
-                                    <h4>Product</h4>
-                                    <div>
-                                        <label>
-                                            <strong>Name:</strong>
-                                        </label>{" "}
-                                        {currentProduct.productName}
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <strong>Full Description:</strong>
-                                        </label>{" "}
-                                        {parse(currentProduct.fullDesc)}
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <strong>Price:</strong>
-                                        </label>{" "}
-                                        {currentProduct.productPrice}
-                                    </div>
 
-                                </div>
-                            ):( <div> </div> )}
+                            </div>
                         </div>
             </div>
         );
