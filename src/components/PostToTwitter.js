@@ -1,9 +1,6 @@
 import React, {Component} from "react";
-import {isAdminAuthenticated} from "../repositories/LoginAndAuthentication";
 import ProductsService from "../services/ProductsService";
 import TwitterService from "../services/TwitterService";
-import {Switch, Route, Link} from "react-router-dom";
-import AddProduct from "./AddProduct";
 
 export class PostToTwitter extends Component {
 constructor(props) {

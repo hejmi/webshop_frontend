@@ -18,7 +18,9 @@ class ProductsService {
     get(id) {
         return http.get(`/products/product?id=${id}`);
     }
-
+    getRating(id) {
+        return http.get(`/productrating?id=${id}`);
+    }
     getAttributesFor(id) {
         return http.get(`/attributes/product?id=${id}`);
     }

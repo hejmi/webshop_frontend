@@ -9,13 +9,15 @@ export default class ProductView extends Component {
             quantity: 1,
             attributes: [],
             optionid: null,
-            topMessage: 'Error 404 - The product you\'re looking for doesn\'t exist...'
+            topMessage: 'Error 404 - The product you\'re looking for doesn\'t exist...',
+            rating: 'No ratings yet'
         };
     }
 
     componentDidMount() {
         this.getProduct();
         this.getProductAttributes();
+        this.getProductRating();
     }
 
     getProduct() {
@@ -39,6 +41,21 @@ export default class ProductView extends Component {
                 });
             })
             .catch(e => {
+            });
+    }
+
+    getProductRating() {
+        let { id } = this.props.match.params
+        ProductsService.getRating(id)
+            .then(response => {
+                if (response.data[0].rating>0) {
+                    this.setState({
+                        rating: response.data[0].rating
+                    });
+                }
+            })
+            .catch(e => {
+
             });
     }
 
@@ -103,6 +120,7 @@ export default class ProductView extends Component {
                                             </div>
 
                                     <div className="currentproduct-desc">{product.product.fullDesc}</div>
+                                    <div className="currentproduct-attributes"><i>Rating: {this.state.rating}</i></div>
                                     <div>{product.stock === 1 ? ( <span><i><b><font color='#8b0000'>This is the last item in stock!</font></b></i><br/></span> ):( <span> </span> )}
                                        <button id="submitButton" onClick={(e) => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
                                         <br/><br/><h5><font color='#8b0000'>{warningText}</font></h5><br/>
