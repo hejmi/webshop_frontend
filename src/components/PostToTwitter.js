@@ -63,7 +63,6 @@ constructor(props) {
         let hashtag = this.state.hashtagToPost
         let customtext = this.state.customtextToPost
         if (productid === "") productid = 1
-        if (hashtag === "") hashtag = 1
         let productLink = "http://thegeeksqueek.com/product/" + productid
         let jsonified = {"message":customtext, "url":productLink, "hashtag":hashtag}
         TwitterService.post2Twitter(jsonified)
@@ -80,7 +79,7 @@ constructor(props) {
     render() {
         const { products, message } = this.state;
         const hashlist = this.state.twitterhash.map((hashtag, index) =>
-            <option key={index} value={hashtag.hashtagId}>{hashtag.hashtagName}</option>
+            <option key={index} value={hashtag.hashtagName}>{hashtag.hashtagName}</option>
         )
         return (
                 <div className="container">
