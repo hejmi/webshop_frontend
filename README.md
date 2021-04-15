@@ -21,6 +21,8 @@ You can try our project by creating a Docker container containing both our appli
    
 5. Browse to http://localhost:3000 to view the web shop. (Backend will run on port 3001)
 
+You can use BasicUser/pw1 to login as customer or Admin/pw2 to login as administrator in frontend
+
 
 ```
 <root>
