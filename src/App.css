@@ -486,3 +486,7 @@ button:hover{
   display: block;
   visibility: visible;
 }
+.cart-quantity {
+  padding-left:10px;
+  padding-right: 7px;
+}

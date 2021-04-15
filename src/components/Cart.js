@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductsService from "../services/ProductsService";
 import BannerAreas from "./BannerAreas";
+import * as Icon from "react-bootstrap-icons"
 
 export default class Cart extends React.Component {
     constructor(props) {
@@ -60,6 +61,24 @@ export default class Cart extends React.Component {
         this.buildCart()
     }
 
+    increaseInCart = (product) => {
+        let products = this.state.products.filter((item) => item.id !== product.id);
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart[product.id.toString()] = cart[product.id.toString()]+1
+        localStorage.setItem('cart', JSON.stringify(cart));
+        let total = this.state.total - (product.qty * product.product_price)
+        this.setState({products, total});
+    }
+
+    decreaseInCart = (product) => {
+        let products = this.state.products.filter((item) => item.id !== product.id);
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart[product.id.toString()] = cart[product.id.toString()]-1
+        localStorage.setItem('cart', JSON.stringify(cart));
+        let total = this.state.total - (product.qty * product.product_price)
+        this.setState({products, total});
+    }
+
     removeFromCart = (product) => {
         let products = this.state.products.filter((item) => item.id !== product.id);
         let cart = JSON.parse(localStorage.getItem('cart'));
@@ -99,13 +118,18 @@ export default class Cart extends React.Component {
                                 <span>{product.short_desc}</span>
                             </div>
                             <div className="col-3">
-                                <input type="button" className="sign-button" value="--" /> {product.qty} <input type="button" className="sign-button" value="+" /> x ${product.product_price}
+                                {product.qty === 1 ? (
+                                    <><Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagDash size={13}></Icon.BagDash></Link></>
+                                ) : (
+                                    <><Link to="#" onClick={() => this.decreaseInCart(product) & window.location.reload(true) }><Icon.BagDash size={13}></Icon.BagDash></Link></>
+                                )}
+                                <span className="cart-quantity">{product.qty}</span> <Link to="#" onClick={() => this.increaseInCart(product) & window.location.reload(true) }><Icon.BagPlus size={13}></Icon.BagPlus></Link> x ${product.product_price}
                             </div>
                             <div className="col-1">
-                                <input type="button" className="sign-button" value="x" onClick={() => this.removeFromCart(product) & window.location.reload(true) } />
+                                <Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagX size={13}></Icon.BagX></Link>
                             </div>
                             <div className="col-2" align="right">
-                                <b>${product.qty * product.product_price}</b>
+                                <b>${(product.qty * product.product_price).toFixed(2)}</b>
                             </div>
                         </div>
                     </div>
