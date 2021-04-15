@@ -10,7 +10,7 @@ export default class ProductView extends Component {
             attributes: [],
             optionid: null,
             topMessage: 'Error 404 - The product you\'re looking for doesn\'t exist...',
-            rating: 'No ratings yet'
+            rating: 0
         };
     }
 
@@ -119,8 +119,16 @@ export default class ProductView extends Component {
 
                                             </div>
 
-                                    <div className="currentproduct-desc">{product.product.fullDesc}</div>
-                                    <div className="currentproduct-attributes"><i>Rating: {this.state.rating}</i></div>
+                                    <div className="currentproduct-desc">{product.product.fullDesc}<br/>
+                                        <div className="star-ratings">
+                                            <div className="fill-ratings" style={{width: (this.state.rating*20)}}>
+                                                <span>★★★★★</span>
+                                                <span className="tooltiptext">{this.state.rating}</span>
+                                            </div>
+                                            <div className="empty-ratings">
+                                                <span>★★★★★</span>
+                                            </div>
+                                        </div></div>
                                     <div>{product.stock === 1 ? ( <span><i><b><font color='#8b0000'>This is the last item in stock!</font></b></i><br/></span> ):( <span> </span> )}
                                        <button id="submitButton" onClick={(e) => this.addToCart(product) & window.location.reload(true)} className="currentbutton-addtocart">Add to cart</button>
                                         <br/><br/><h5><font color='#8b0000'>{warningText}</font></h5><br/>

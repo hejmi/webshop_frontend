@@ -435,3 +435,54 @@ button:hover{
   background-color: #888888;
   color: #FFFFFF;
 }
+
+.star-ratings {
+  unicode-bidi: bidi-override;
+  color: #ccc;
+  font-size: 20px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.star-ratings .fill-ratings {
+  color: #e7711b;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.star-ratings .fill-ratings span {
+     display: inline-block;
+   }
+
+.star-ratings .fill-ratings .empty-ratings {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
+
+.fill-ratings .tooltiptext {
+  font-size: 12px;
+  visibility: hidden;
+  width: 50px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+}
+
+.fill-ratings:hover .tooltiptext {
+  display: block;
+  visibility: visible;
+}
+.empty-ratings:hover .tooltiptext {
+  display: block;
+  visibility: visible;
+}
