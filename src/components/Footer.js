@@ -26,7 +26,7 @@ export class Footer extends Component {
                                 <h6>Socialize with us</h6><hr />
                                 <span className="footer-social-icon"><Icon.Facebook /> </span> <a href="https://facebook.com/thegeeksqueek" className="footer-link">facebook.com/thegeeksqueek</a><br/>
                                 <span className="footer-social-icon"><Icon.Instagram /> </span> <a href="https://intagr.am/thegeeksqueek" className="footer-link">instagr.am/thegeeksqueek</a><br/>
-                                <span className="footer-social-icon"> <Icon.Twitter /> </span> <a href="https://twitter.me/thegeeksqueek" className="footer-link">twitter.me/thegeeksqueek</a><br/>
+                                <span className="footer-social-icon"> <Icon.Twitter /> </span> <a href="https://twitter.com/dummy1365" className="footer-link">twitter.com/dummy1365</a><br/>
                                 <span className="footer-social-icon"><Icon.Envelope /> </span> <a href="mailto:thegeeksqueek@gmail.com" className="footer-link">thegeeksqueek@gmail.com</a>
                             </div>
                             <div className="col-auto float-right"><p align="center"><img src="/images/logoonly.png" alt="LogoText" width="55" /><br/><img src="/images/logotextonly.png" alt="LogoText" width="110" /></p></div>
