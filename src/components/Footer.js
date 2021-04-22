@@ -8,7 +8,7 @@ export class Footer extends Component {
                 <div className="container">
                     <div className="footer-block">
                         <div className="row">
-                            <div className="col-1"></div>
+                            <div className="col-1"> </div>
                             <div className="col-3">
                                 <h6>Products</h6><hr />
                                 <span className="footer-social-icon"><Icon.SuitHeartFill /></span> <a href="/popularproducts" className="footer-link">Most Popular</a><br/>

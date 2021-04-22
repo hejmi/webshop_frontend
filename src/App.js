@@ -103,8 +103,8 @@ class App extends Component {
                 <nav className="navbar navbar-expand-md bg-dark col-12 d-none d-md-flex" role="navigation"
                      aria-label="main navigation">
                     <div className="navbar-brand">
-                        <div className="navbar-item"><a href="/"><img src="/images/logoandtext.png" alt="logo"
-                                                                      className="navbar-logo" width="200"/></a></div>
+                        <div className="navbar-item"><a href="/">
+                            <img src="/images/logoandtext.png" alt="logo" className="navbar-logo" width="200"/></a></div>
                     </div>
                     <div className="navbar-nav mr-auto col-12">
                         <div className="navbar-collapse col d-none">
@@ -139,7 +139,7 @@ class App extends Component {
                                                                 {subcategory.parentCategoryId === category.id ? (
                                                                     <div className="navbar-dropdown-sub"><Link
                                                                         to={`/categories/${subcategory.id}`}>{subcategory.categoryName}</Link>
-                                                                    </div>) : (null)}
+                                                                    </div>) : null}
                                                             </div>
                                                         ))}
                                                     </div>
@@ -187,7 +187,7 @@ class App extends Component {
                                             <Dropdown.Item id="dropdown-item-custom" href="/mysettings"><Icon.Clipboard
                                                 size={18}/> My Orders</Dropdown.Item>
                                                 )}
-                                            <Dropdown.Divider></Dropdown.Divider>
+                                            <Dropdown.Divider />
                                             <Dropdown.Item id="dropdown-item-custom" href="/"
                                                            onClick={this.logout}><Icon.PersonXFill size={18}/> Logout</Dropdown.Item>
                                         </Dropdown.Menu>
@@ -230,7 +230,7 @@ class App extends Component {
                     <Route path="/administration" component={Administration} />
                     <Route path="/contact" component={Contact} />
                 </Switch>
-                <Footer></Footer>
+                <Footer />
 
             </div>
         );

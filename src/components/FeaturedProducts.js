@@ -54,7 +54,7 @@ export default class FeaturedProducts extends Component {
         const {  featuredproducts } = this.state;
         return (
             <div className="container">
-                <BootstrapCarousel></BootstrapCarousel>
+                <BootstrapCarousel />
                 <br/>
                 <div className="featured-products">
                     <div className="title-header">
@@ -104,7 +104,7 @@ export default class FeaturedProducts extends Component {
                     </div>
 
                 </div>
-                <BannerAreas></BannerAreas>
+                <BannerAreas />
             </div>
         )
     }

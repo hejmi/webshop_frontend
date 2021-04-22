@@ -43,10 +43,10 @@ class AddProduct extends Component {
                                                subcategory.parentCategoryId === category.id ? (
                                                         <option key={indx} name="category" value={subcategory.id}>{subcategory.categoryName}</option>
 
-                                                       ) : (null)
+                                                       ) : null
                                             ))}
                                         </>
-                                ) : (null)
+                                ) : null
                         ))}
                         </select>
                     </div>

@@ -119,14 +119,14 @@ export default class Cart extends React.Component {
                             </div>
                             <div className="col-3">
                                 {product.qty === 1 ? (
-                                    <><Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagDash size={13}></Icon.BagDash></Link></>
+                                    <><Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagDash size={13} /></Link></>
                                 ) : (
-                                    <><Link to="#" onClick={() => this.decreaseInCart(product) & window.location.reload(true) }><Icon.BagDash size={13}></Icon.BagDash></Link></>
+                                    <><Link to="#" onClick={() => this.decreaseInCart(product) & window.location.reload(true) }><Icon.BagDash size={13} /></Link></>
                                 )}
                                 <span className="cart-quantity">{product.qty}</span> <Link to="#" onClick={() => this.increaseInCart(product) & window.location.reload(true) }><Icon.BagPlus size={13}></Icon.BagPlus></Link> x ${product.product_price}
                             </div>
                             <div className="col-1">
-                                <Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagX size={13}></Icon.BagX></Link>
+                                <Link to="#" onClick={() => this.removeFromCart(product) & window.location.reload(true) }><Icon.BagX size={13} /></Link>
                             </div>
                             <div className="col-2" align="right">
                                 <b>${(product.qty * product.product_price).toFixed(2)}</b>
@@ -146,7 +146,7 @@ export default class Cart extends React.Component {
                 <button className="button-addtocart float-right">Go to checkout</button></Link>
             <button className="button-moreinfo float-right" onClick={() => localStorage.clear() & window.location.reload(true) }
                     style={{ marginRight: "10px" }}>Empty Cart</button><br/><br/><br/>
-                <BannerAreas></BannerAreas>
+                <BannerAreas />
             </div>
         );
     }
